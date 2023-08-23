@@ -1,0 +1,20 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Music concert",
+      "time": "2023-08-25T03:23:08.073Z",
+      "location": "Quy Nhon",
+      "price": 10000,
+      "image": "https://picsum.photos/200"
+    },
+    {
+      "id": 2,
+      "name": "Football",
+      "time": "2023-09-25T03:23:08.073Z",
+      "location": "Quy Nhon",
+      "price": 20000,
+      "image": "https://picsum.photos/200"
+    }
+  ]
+}
