@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/constants.dart';
 
 class NewEvent extends StatefulWidget {
-  static String routeName = '/';
+  static String routeName = '/new-event';
 
   const NewEvent({super.key});
 

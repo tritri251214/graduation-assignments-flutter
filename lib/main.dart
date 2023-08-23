@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/constants.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/screens/screens.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 // import 'package:provider/provider.dart';
 
 // void main() => runApp(MultiProvider(
@@ -11,10 +12,14 @@ import 'package:graduation_assignments_flutter/screens/screens.dart';
 //   child: const MainApp(),
 // ));
 
-void main() => runApp(const MainApp());
+void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  runApp(const MyApp());
+}
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +27,6 @@ class MainApp extends StatelessWidget {
       title: AppStrings.appName,
       initialRoute: HomeScreen.routeName,
       routes: AppRouter.routes,
-      onGenerateRoute: (settings) {
-        // TODO
-        assert(false, 'Need to implement ${settings.name}');
-        return null;
-      },
     );
   }
 }
