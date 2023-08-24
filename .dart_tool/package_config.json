@@ -128,6 +128,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/intl-0.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
@@ -170,10 +176,46 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "permission_handler",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/permission_handler-10.4.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_android",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/permission_handler_android-10.3.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_apple",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/permission_handler_apple-9.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_platform_interface",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-3.11.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "permission_handler_windows",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "petitparser",
       "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "plugin_platform_interface",
+      "rootUri": "file:///Users/minhtri/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "pointycastle",
@@ -278,7 +320,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-08-23T02:23:15.048837Z",
+  "generated": "2023-08-24T03:43:33.606286Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

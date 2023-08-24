@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_assignments_flutter/common/dimensions.dart';
 
 class BannerPlaceholder extends StatelessWidget {
   const BannerPlaceholder({Key? key}) : super(key: key);
@@ -113,9 +114,7 @@ class ContentPlaceholder extends StatelessWidget {
 }
 
 class ListItemPlaceholder extends StatelessWidget {
-  const ListItemPlaceholder({
-    Key? key
-  }) : super(key: key);
+  const ListItemPlaceholder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -160,9 +159,7 @@ class ListItemPlaceholder extends StatelessWidget {
 }
 
 class DetailPlaceholder extends StatelessWidget {
-  const DetailPlaceholder({
-    Key? key
-  }) : super(key: key);
+  const DetailPlaceholder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -189,9 +186,7 @@ class DetailPlaceholder extends StatelessWidget {
 }
 
 class EditPlaceholder extends StatelessWidget {
-  const EditPlaceholder({
-    Key? key
-  }) : super(key: key);
+  const EditPlaceholder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -207,6 +202,77 @@ class EditPlaceholder extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class CardPlaceholder extends StatelessWidget {
+  const CardPlaceholder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(0),
+      color: AppDimensions.backgroundCard,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppDimensions.cardBorderRadius,
+      ),
+      elevation: 2.0,
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 100,
+            color: AppDimensions.white,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 20,
+                        color: AppDimensions.white,
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        width: double.infinity,
+                        height: 20,
+                        color: AppDimensions.white,
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Container(
+                            width: 20,
+                            height: 20,
+                            color: AppDimensions.white,
+                          ),
+                          const SizedBox(width: 5),
+                          Container(
+                            width: double.infinity,
+                            height: 20,
+                            color: AppDimensions.white,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 20,
+                    color: AppDimensions.white,
+                  ),
+                ]),
+          ),
+        ],
+      ),
     );
   }
 }

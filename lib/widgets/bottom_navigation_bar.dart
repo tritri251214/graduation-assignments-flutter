@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_assignments_flutter/common/common.dart';
+import 'package:graduation_assignments_flutter/router.dart';
+
+enum Menu { home, search, tickets, favorites, profile }
 
 class BottomNavigationBarWidget extends StatefulWidget {
-  const BottomNavigationBarWidget({super.key, required this.selectedMenu});
+  const BottomNavigationBarWidget({
+    super.key,
+    required this.selectedMenu,
+    this.router = const AppRouter(),
+  });
 
-  final String selectedMenu;
+  final Menu selectedMenu;
+  final AppRouter router;
 
   @override
   State<BottomNavigationBarWidget> createState() => _ComponentState();
@@ -18,7 +27,20 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
         Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
         break;
       case 1:
-        Navigator.of(context).pushNamedAndRemoveUntil('/todo', (route) => false);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/search', (route) => false);
+        break;
+      case 2:
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/tickets', (route) => false);
+        break;
+      case 3:
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/favorites', (route) => false);
+        break;
+      case 4:
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/profile', (route) => false);
         break;
       default:
         Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
@@ -26,32 +48,52 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
     }
   }
 
+  BottomNavigationBarItem buildItem(IconData iconData, Menu label) {
+    return BottomNavigationBarItem(
+      icon: Icon(
+        iconData,
+        color: widget.selectedMenu == label  ? Colors.black : Colors.grey,
+      ),
+      label: label.toString(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     switch (widget.selectedMenu) {
-      case 'home':
+      case Menu.home:
         selectedMenu = 0;
         break;
-      case 'todo':
+      case Menu.search:
         selectedMenu = 1;
+        break;
+      case Menu.tickets:
+        selectedMenu = 2;
+        break;
+      case Menu.favorites:
+        selectedMenu = 3;
+        break;
+      case Menu.profile:
+        selectedMenu = 4;
         break;
       default:
         selectedMenu = 0;
         break;
     }
     return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Todo',
-        ),
+      backgroundColor: AppDimensions.backgroundCard,
+      elevation: 2,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      items: <BottomNavigationBarItem>[
+        buildItem(Icons.home_outlined, Menu.home),
+        buildItem(Icons.search_outlined, Menu.search),
+        buildItem(Icons.local_offer_outlined, Menu.tickets),
+        buildItem(Icons.favorite_border_outlined, Menu.favorites),
+        buildItem(Icons.person_outline, Menu.profile),
       ],
       currentIndex: selectedMenu,
-      selectedItemColor: Colors.amber[800],
+      selectedItemColor: Colors.black,
       onTap: _onChangeMenu,
     );
   }

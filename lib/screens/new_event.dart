@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_assignments_flutter/common/constants.dart';
+import 'package:graduation_assignments_flutter/common/common.dart';
 
 class NewEvent extends StatefulWidget {
   static String routeName = '/new-event';
