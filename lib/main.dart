@@ -25,6 +25,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppStrings.appName,
+      theme: ThemeData(
+        filledButtonTheme: const FilledButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor)
+          ),
+        ),
+      ),
       initialRoute: HomeScreen.routeName,
       routes: AppRouter.routes,
     );

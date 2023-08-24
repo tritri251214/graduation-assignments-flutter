@@ -11,10 +11,10 @@ class NewBadgeWidget extends StatelessWidget {
       height: 26,
       decoration: BoxDecoration(
         borderRadius: AppDimensions.newBadgeBorderRadius,
-        color: AppDimensions.primaryColor,
+        color: AppColors.primaryColor,
       ),
-      child: Center(
-        child: Text('New', style: TextStyle(color: AppDimensions.white)),
+      child: const Center(
+        child: Text('New', style: TextStyle(color: AppColors.white)),
       ),
     );
   }

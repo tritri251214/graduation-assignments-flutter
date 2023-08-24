@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/utils/snackbar.dart';
+import 'package:graduation_assignments_flutter/widgets/placeholders.dart';
 import 'package:provider/provider.dart';
 
 class ActionWidget extends StatefulWidget {
@@ -75,15 +76,7 @@ class _ActionWidgetState extends State<ActionWidget> {
   Widget buildIconFavorite() {
     Widget widget;
     if (_isLoadingFavorite) {
-      widget = Container(
-        width: 24,
-        height: 24,
-        padding: const EdgeInsets.all(2.0),
-        child: const CircularProgressIndicator(
-          color: Colors.black,
-          strokeWidth: 3,
-        ),
-      );
+      widget = const LoadingButton();
     } else if (_statusFavorite) {
       widget = const Icon(Icons.favorite, color: Colors.red);
     } else {

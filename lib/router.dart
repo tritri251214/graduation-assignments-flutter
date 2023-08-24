@@ -12,8 +12,11 @@ class AppRouter {
   Future<void> gotoNewEvent(
     BuildContext context,
   ) async {
-    await Navigator.of(context).push(CupertinoPageRoute(
-      builder: (_) => const NewEvent()
-    ));
+    await Navigator.of(context)
+        .push(CupertinoPageRoute(builder: (_) => const NewEvent()));
+  }
+
+  Future<void> goBack(BuildContext context) async {
+    Navigator.of(context).pop();
   }
 }

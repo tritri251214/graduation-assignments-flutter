@@ -81,7 +81,7 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
         break;
     }
     return BottomNavigationBar(
-      backgroundColor: AppDimensions.backgroundCard,
+      backgroundColor: AppColors.backgroundCard,
       elevation: 2,
       showSelectedLabels: false,
       showUnselectedLabels: false,

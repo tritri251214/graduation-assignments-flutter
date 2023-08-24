@@ -21,7 +21,7 @@ class LatestEventWidget extends StatelessWidget {
     } else {
       widget = Card(
         margin: const EdgeInsets.all(0),
-        color: AppDimensions.backgroundCard,
+        color: AppColors.backgroundCard,
         shape: RoundedRectangleBorder(
           borderRadius: AppDimensions.cardBorderRadius,
         ),
@@ -77,7 +77,7 @@ class LatestEventWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      ActionWidget(eventId: provider.latestEvent!.id),
+                      ActionWidget(eventId: provider.latestEvent!.id!),
                     ]),
               ),
             ],

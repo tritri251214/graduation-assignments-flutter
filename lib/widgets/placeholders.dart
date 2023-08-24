@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_assignments_flutter/common/dimensions.dart';
+import 'package:graduation_assignments_flutter/common/common.dart';
 
 class BannerPlaceholder extends StatelessWidget {
   const BannerPlaceholder({Key? key}) : super(key: key);
@@ -213,7 +213,7 @@ class CardPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(0),
-      color: AppDimensions.backgroundCard,
+      color: AppColors.backgroundCard,
       shape: RoundedRectangleBorder(
         borderRadius: AppDimensions.cardBorderRadius,
       ),
@@ -223,7 +223,7 @@ class CardPlaceholder extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 100,
-            color: AppDimensions.white,
+            color: AppColors.white,
           ),
           Padding(
             padding: const EdgeInsets.all(14.0),
@@ -238,13 +238,13 @@ class CardPlaceholder extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         height: 20,
-                        color: AppDimensions.white,
+                        color: AppColors.white,
                       ),
                       const SizedBox(height: 8),
                       Container(
                         width: double.infinity,
                         height: 20,
-                        color: AppDimensions.white,
+                        color: AppColors.white,
                       ),
                       const SizedBox(height: 8),
                       Row(
@@ -252,13 +252,13 @@ class CardPlaceholder extends StatelessWidget {
                           Container(
                             width: 20,
                             height: 20,
-                            color: AppDimensions.white,
+                            color: AppColors.white,
                           ),
                           const SizedBox(width: 5),
                           Container(
                             width: double.infinity,
                             height: 20,
-                            color: AppDimensions.white,
+                            color: AppColors.white,
                           )
                         ],
                       ),
@@ -267,11 +267,28 @@ class CardPlaceholder extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 20,
-                    color: AppDimensions.white,
+                    color: AppColors.white,
                   ),
                 ]),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class LoadingButton extends StatelessWidget {
+  const LoadingButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 24,
+      height: 24,
+      padding: const EdgeInsets.all(2.0),
+      child: const CircularProgressIndicator(
+        color: Colors.black,
+        strokeWidth: 3,
       ),
     );
   }
