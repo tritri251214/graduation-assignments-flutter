@@ -7,6 +7,7 @@ class AppRouter {
   static Map<String, Widget Function(BuildContext)> routes = {
     HomeScreen.routeName: (_) => const HomeScreen(),
     NewEvent.routeName: (_) => const NewEvent(),
+    SearchEventsScreen.routeName: (_) => const SearchEventsScreen(),
   };
 
   static CupertinoPageRoute? onGenerateRoute(RouteSettings settings) {

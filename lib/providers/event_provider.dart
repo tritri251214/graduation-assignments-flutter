@@ -46,6 +46,33 @@ class EventProvider with ChangeNotifier {
     }
   }
 
+  Future<List<Event>> searchEvents(String textSearch, String sortBy, String sortType) async {
+    try {
+      late List<dynamic> response;
+      if (textSearch == '') {
+        response = await get('events?_sort=$sortBy&_order=$sortType');
+      } else {
+        response = await get('events?name_like=$textSearch&_sort=$sortBy&_order=$sortType');
+      }
+      if (response.isEmpty) {
+        return [];
+      }
+      final List<Event> loadedEventData = [];
+      for (var item in response) {
+        loadedEventData.add(
+          Event.fromJson(item),
+        );
+      }
+      loadedEventData;
+      return loadedEventData;
+    } catch (error) {
+      // ignore: avoid_print
+      print('searchEvent: $error');
+      // ignore: use_rethrow_when_possible
+      throw error;
+    }
+  }
+
   Future<Event> addEvent(Event data) async {
     try {
       final response = await post('events', data: data);

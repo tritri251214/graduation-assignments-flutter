@@ -101,6 +101,6 @@ class LatestEventWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildRoot(context);
+    return loading ? const LoadingLatestEvent() : buildRoot(context);
   }
 }

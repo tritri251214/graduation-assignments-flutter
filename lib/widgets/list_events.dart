@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
-import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/widgets/action.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:graduation_assignments_flutter/widgets/location.dart';
 import 'package:graduation_assignments_flutter/widgets/new_badge.dart';
-import 'package:provider/provider.dart';
 
 class ListEventsWidget extends StatefulWidget {
   const ListEventsWidget({
     super.key,
     required this.loading,
+    required this.eventData,
     this.router = const AppRouter(),
+    this.displayLatest = true,
   });
 
   final bool loading;
   final AppRouter router;
+  final List<Event> eventData;
+  final bool displayLatest;
 
   @override
   State<StatefulWidget> createState() => _ListEventsWidgetState();
@@ -35,7 +37,7 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
             SizedBox(
               width: 90,
               height: 90,
-              child: (isLatest != null && isLatest)
+              child: (widget.displayLatest && (isLatest != null && isLatest))
                   ? Stack(
                       alignment: const Alignment(1.3, -1.3),
                       children: [
@@ -84,30 +86,20 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
     ]);
   }
 
-  Widget buildRoot(BuildContext context, EventProvider provider) {
-    Widget buildContent;
-    if (widget.loading) {
-      buildContent = const LoadingListEvent();
-    } else {
-      final children = <Widget>[];
-      for (var i = 0; i < provider.eventData.length; i++) {
-        if (i == 0) {
-          children.add(buildEvent(provider.eventData[i], true));
-        } else {
-          children.add(buildEvent(provider.eventData[i], false));
-        }
-      }
-      buildContent = Column(
-        children: children,
-      );
-    }
-    return buildContent;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<EventProvider>(
-      builder: (_, provider, __) => buildRoot(context, provider),
-    );
+    final children = <Widget>[];
+    for (var i = 0; i < widget.eventData.length; i++) {
+      if (i == 0) {
+        children.add(buildEvent(widget.eventData[i], true));
+      } else {
+        children.add(buildEvent(widget.eventData[i], false));
+      }
+    }
+    return widget.loading
+        ? const LoadingListEvent()
+        : Column(
+            children: children,
+          );
   }
 }

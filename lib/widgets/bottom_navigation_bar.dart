@@ -28,7 +28,7 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
         break;
       case 1:
         Navigator.of(context)
-            .pushNamedAndRemoveUntil('/search', (route) => false);
+            .pushNamedAndRemoveUntil('/search-event', (route) => false);
         break;
       case 2:
         Navigator.of(context)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late EventProvider _eventProvider;
   bool _isLoading = false;
+  List<Event> _eventData = [];
 
   @override
   void initState() {
@@ -44,6 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       await _eventProvider.getListEvent();
+      setState(() {
+        _eventData = _eventProvider.eventData;
+      });
     } catch (error) {
       // todo
     } finally {
@@ -68,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             LatestEventWidget(loading: _isLoading),
             const SizedBox(height: 16),
-            ListEventsWidget(loading: _isLoading),
+            ListEventsWidget(loading: _isLoading, eventData: _eventData),
           ],
         ),
       ),

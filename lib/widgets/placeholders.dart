@@ -118,42 +118,46 @@ class ListItemPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 25.0,
-            height: 25.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
-              color: Colors.white,
-            ),
+    return Row(
+      children: [
+        Container(
+          width: 90,
+          height: 90,
+          color: Colors.white,
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 20,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 5),
+              Container(
+                width: double.infinity,
+                height: 20,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 16),
+              Container(
+                width: double.infinity,
+                height: 20,
+                color: Colors.white,
+              ),
+            ],
           ),
-          const SizedBox(width: 12.0),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 10.0,
-                  color: Colors.white,
-                  margin: const EdgeInsets.only(bottom: 8.0),
-                ),
-                Container(
-                  width: 100.0,
-                  height: 10.0,
-                  color: Colors.white,
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+        ),
+        const SizedBox(width: 10),
+        Container(
+          width: 60,
+          height: 30,
+          color: Colors.white,
+        ),
+      ],
     );
   }
 }
@@ -222,54 +226,8 @@ class CardPlaceholder extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 100,
+            height: 250,
             color: AppColors.white,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 20,
-                        color: AppColors.white,
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        width: double.infinity,
-                        height: 20,
-                        color: AppColors.white,
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Container(
-                            width: 20,
-                            height: 20,
-                            color: AppColors.white,
-                          ),
-                          const SizedBox(width: 5),
-                          Container(
-                            width: double.infinity,
-                            height: 20,
-                            color: AppColors.white,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 20,
-                    color: AppColors.white,
-                  ),
-                ]),
           ),
         ],
       ),
