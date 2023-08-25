@@ -3,7 +3,7 @@ import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
-import 'package:graduation_assignments_flutter/widgets/placeholders.dart';
+import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 class NewEvent extends StatefulWidget {
@@ -44,13 +44,13 @@ class _NewEventState extends State<NewEvent> {
   }
 
   Widget buildButtonSave() {
-    Widget widget;
+    Widget buildContent;
     if (_isLoading) {
-      widget = const LoadingButton();
+      buildContent = const LoadingButton();
     } else {
-      widget = const Text('Submit', style: TextStyle(fontSize: 16));
+      buildContent = const Text('Submit', style: TextStyle(fontSize: 16));
     }
-    return widget;
+    return buildContent;
   }
 
   @override

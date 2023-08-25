@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
-import 'package:http/http.dart' as http;
-// import 'dart:io' show Platform;
 
 class EventProvider with ChangeNotifier {
   List<Event> eventData = [];
@@ -36,10 +34,10 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<Event?> getEvent(int eventId) async {
+  Future<Event> getEvent(int eventId) async {
     try {
-      final http.Response response = await get('events/$eventId');
-      return Event.fromJson(json.decode(response.body));
+      final response = await get('events/$eventId');
+      return Event.fromJson(response);
     } catch (error) {
       // ignore: avoid_print
       print('getEvent: $error');
@@ -89,7 +87,7 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<void> favoriteEvent(int eventId) async {
+  Future<Event> favoriteEvent(int eventId) async {
     try {
       int index = eventData.indexWhere((item) => item.id == eventId);
       Event event = eventData[index];
@@ -98,6 +96,7 @@ class EventProvider with ChangeNotifier {
       Event newEvent = Event.fromJson(response);
       eventData[index] = newEvent;
       notifyListeners();
+      return newEvent;
     } catch (error) {
       // ignore: avoid_print
       print('favoriteEvent: $error');
@@ -106,7 +105,7 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<void> unFavoriteEvent(int eventId) async {
+  Future<Event> unFavoriteEvent(int eventId) async {
     try {
       int index = eventData.indexWhere((item) => item.id == eventId);
       Event event = eventData[index];
@@ -115,6 +114,7 @@ class EventProvider with ChangeNotifier {
       Event newEvent = Event.fromJson(response);
       eventData[index] = newEvent;
       notifyListeners();
+      return newEvent;
     } catch (error) {
       // ignore: avoid_print
       print('unFavoriteEvent: $error');

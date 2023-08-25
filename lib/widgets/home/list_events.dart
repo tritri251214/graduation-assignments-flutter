@@ -2,24 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
-import 'package:graduation_assignments_flutter/widgets/home/home_widget.dart';
+import 'package:graduation_assignments_flutter/router.dart';
+import 'package:graduation_assignments_flutter/widgets/action.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:graduation_assignments_flutter/widgets/location.dart';
 import 'package:graduation_assignments_flutter/widgets/new_badge.dart';
 import 'package:provider/provider.dart';
 
-class ListEventsWidget extends StatelessWidget {
+class ListEventsWidget extends StatefulWidget {
   const ListEventsWidget({
     super.key,
     required this.loading,
+    this.router = const AppRouter(),
   });
 
   final bool loading;
+  final AppRouter router;
 
+  @override
+  State<StatefulWidget> createState() => _ListEventsWidgetState();
+}
+
+class _ListEventsWidgetState extends State<ListEventsWidget> {
   Widget buildEvent(Event event, bool? isLatest) {
-    return Column(
-      children: [
-        Row(
+    return Column(children: [
+      InkWell(
+        onTap: () {
+          widget.router.gotoSingleEvent(context, event.id!);
+        },
+        child: Row(
           children: [
             SizedBox(
               width: 90,
@@ -33,7 +44,8 @@ class ListEventsWidget extends StatelessWidget {
                           height: double.infinity,
                           child: ClipRRect(
                             borderRadius: AppDimensions.imageListBorderRadius,
-                            child: Image.network(event.image, fit: BoxFit.cover),
+                            child:
+                                Image.network(event.image, fit: BoxFit.cover),
                           ),
                         ),
                         const NewBadgeWidget(),
@@ -50,7 +62,8 @@ class ListEventsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(event.getFormatTime(), style: const TextStyle(fontSize: 12)),
+                  Text(event.getFormatTime(),
+                      style: const TextStyle(fontSize: 12)),
                   const SizedBox(height: 5),
                   Text(event.name,
                       style: const TextStyle(
@@ -66,15 +79,15 @@ class ListEventsWidget extends StatelessWidget {
             ActionWidget(eventId: event.id as int),
           ],
         ),
-        const SizedBox(height: 20),
-      ]
-    );
+      ),
+      const SizedBox(height: 20),
+    ]);
   }
 
   Widget buildRoot(BuildContext context, EventProvider provider) {
-    Widget widget;
-    if (loading) {
-      widget = const LoadingListEvent();
+    Widget buildContent;
+    if (widget.loading) {
+      buildContent = const LoadingListEvent();
     } else {
       final children = <Widget>[];
       for (var i = 0; i < provider.eventData.length; i++) {
@@ -84,11 +97,11 @@ class ListEventsWidget extends StatelessWidget {
           children.add(buildEvent(provider.eventData[i], false));
         }
       }
-      widget = Column(
+      buildContent = Column(
         children: children,
       );
     }
-    return widget;
+    return buildContent;
   }
 
   @override

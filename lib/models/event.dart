@@ -8,6 +8,8 @@ class Event {
   double price;
   String image;
   bool? favorite;
+  String? address;
+  String? timeEnd;
 
   Event({
     required this.name,
@@ -17,6 +19,8 @@ class Event {
     required this.favorite,
     required this.id,
     required this.price,
+    this.address,
+    this.timeEnd,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {
@@ -28,6 +32,8 @@ class Event {
       image: json['image'].toString(),
       price: json['price'] as double,
       favorite: json['favorite'] as bool,
+      address: json['address'].toString(),
+      timeEnd: json['timeEnd'].toString(),
     );
   }
 
@@ -40,18 +46,22 @@ class Event {
       price: 0,
       favorite: false,
       id: null,
+      address: '',
+      timeEnd: '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name': name.toString(),
-      'time': time.toString(),
-      'location': location.toString(),
-      'image': image.toString(),
+      'name': name,
+      'time': time,
+      'location': location,
+      'image': image,
       'price': price,
       'favorite': favorite,
+      'address': address ?? '',
+      'timeEnd': timeEnd ?? '',
     };
   }
 

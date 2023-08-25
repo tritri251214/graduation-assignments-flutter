@@ -1,19 +1,17 @@
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 String formatTime(String inputString) {
-  /// Convert into local date format.
+  initializeDateFormatting();
+
   var localDate = DateTime.parse(inputString).toLocal();
+  return DateFormat(AppStrings.formatDateTime).format(localDate);
+}
 
-  /// inputFormat - format getting from api or other func.
-  /// e.g If 2021-05-27 9:34:12.781341 then format should be yyyy-MM-dd HH:mm
-  /// If 27/05/2021 9:34:12.781341 then format should be dd/MM/yyyy HH:mm
-  var inputFormat = DateFormat(AppStrings.formatDateTime);
-  var inputDate = inputFormat.parse(localDate.toString());
+String customFormatTime(String inputString, String pattern) {
+  initializeDateFormatting();
 
-  /// outputFormat - convert into format you want to show.
-  var outputFormat = DateFormat(AppStrings.formatDateTime);
-  var outputDate = outputFormat.format(inputDate);
-
-  return outputDate.toString();
+  var localDate = DateTime.parse(inputString).toLocal();
+  return DateFormat(pattern).format(localDate);
 }

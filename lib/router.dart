@@ -9,6 +9,17 @@ class AppRouter {
     NewEvent.routeName: (_) => const NewEvent(),
   };
 
+  static CupertinoPageRoute? onGenerateRoute(RouteSettings settings) {
+    if (settings.name == SingleEvent.routeName) {
+      final args = settings.arguments as SingleEventArguments;
+      return CupertinoPageRoute(
+        builder: (_) => SingleEvent(eventId: args.eventId)
+      );
+    }
+    assert(false, 'Need to implement ${settings.name}');
+    return null;
+  }
+
   Future<void> gotoNewEvent(
     BuildContext context,
   ) async {
@@ -18,5 +29,13 @@ class AppRouter {
 
   Future<void> goBack(BuildContext context) async {
     Navigator.of(context).pop();
+  }
+
+  Future<void> gotoSingleEvent(
+    BuildContext context,
+    int eventId,
+  ) async {
+    await Navigator.of(context)
+        .push(CupertinoPageRoute(builder: (_) => SingleEvent(eventId: eventId)));
   }
 }

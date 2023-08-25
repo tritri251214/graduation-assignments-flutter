@@ -26,14 +26,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: AppStrings.appName,
       theme: ThemeData(
+        useMaterial3: true,
         filledButtonTheme: const FilledButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor)
-          ),
+              backgroundColor:
+                  MaterialStatePropertyAll(AppColors.primaryColor)),
         ),
       ),
       initialRoute: HomeScreen.routeName,
       routes: AppRouter.routes,
+      onGenerateRoute: (settings) => AppRouter.onGenerateRoute(settings),
     );
   }
 }

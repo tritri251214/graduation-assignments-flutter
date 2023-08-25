@@ -276,20 +276,3 @@ class CardPlaceholder extends StatelessWidget {
     );
   }
 }
-
-class LoadingButton extends StatelessWidget {
-  const LoadingButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 24,
-      height: 24,
-      padding: const EdgeInsets.all(2.0),
-      child: const CircularProgressIndicator(
-        color: Colors.black,
-        strokeWidth: 3,
-      ),
-    );
-  }
-}

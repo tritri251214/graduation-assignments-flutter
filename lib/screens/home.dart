@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:graduation_assignments_flutter/widgets/home/home_widget.dart';
 import 'package:provider/provider.dart';
@@ -35,14 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _isLoading = false;
 
     super.dispose();
-  }
-
-  void initialization() async {
-    // This is where you can initialize the resources needed by your app while
-    // the splash screen is displayed.  Remove the following example because
-    // delaying the user experience is a bad design practice!
-    await Future.delayed(const Duration(seconds: 1));
-    FlutterNativeSplash.remove();
   }
 
   Future<void> _reload() async {

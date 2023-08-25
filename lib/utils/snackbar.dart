@@ -31,3 +31,7 @@ void showSnackBar(BuildContext context, Widget content, TypeSnackBar type) {
     ),
   );
 }
+
+void showNeedImplement(BuildContext context) {
+  showSnackBar(context, const Text('The feature not implement!'), TypeSnackBar.warning);
+}
