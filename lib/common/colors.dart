@@ -4,7 +4,7 @@ class AppColors {
   AppColors._();
 
   static const placeholderText = Colors.grey;
-  static const primaryColor = Color(0xFF30D969);
+  static const primaryColor = Color(0xFF0DCDAA);
   static const dangerColor = Color(0xFFE26464);
   static const white = Colors.white;
   static const textColor = Colors.black;

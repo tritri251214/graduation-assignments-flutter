@@ -164,16 +164,23 @@ class _NewEventState extends State<NewEvent> {
                 });
               },
             ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50.0,
-              child: FilledButton(
-                onPressed: _onPressSave,
-                child: buildButtonSave(),
-              ),
-            )
           ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: 70,
+        decoration: const BoxDecoration(
+          color: Colors.transparent,
+        ),
+        padding: const EdgeInsets.all(14),
+        child: SizedBox(
+          width: double.infinity,
+          height: 50.0,
+          child: FilledButton(
+            onPressed: _onPressSave,
+            child: buildButtonSave(),
+          ),
         ),
       ),
     );

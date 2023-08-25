@@ -25,7 +25,7 @@ class EventProvider with ChangeNotifier {
         );
       }
       eventData = loadedEventData;
-      return;
+      notifyListeners();
     } catch (error) {
       // ignore: avoid_print
       print('getListEvent: $error');
