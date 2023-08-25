@@ -5,6 +5,7 @@ class AppColors {
 
   static const placeholderText = Colors.grey;
   static const primaryColor = Color(0xFF30D969);
+  static const dangerColor = Color(0xFFE26464);
   static const white = Colors.white;
   static const textColor = Colors.black;
   static const iconBottomBarColor = Color(0xFFBDBDBD);

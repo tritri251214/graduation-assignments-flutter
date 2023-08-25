@@ -125,12 +125,17 @@ class _SingleEventState extends State<SingleEvent> {
                 children: [
                   Text(_event.getFormatTime(), style: textStyleGenerate),
                   const SizedBox(height: 5),
-                  Text(customFormatTime(_event.time, 'h:mm a - h:mm a')),
+                  Text(_event.getFromToTime()),
                   TextButton(
                     onPressed: _onPressItem,
-                    style: const ButtonStyle(
-                        padding:
-                            MaterialStatePropertyAll(EdgeInsets.only(left: 0))),
+                    style: ButtonStyle(
+                      padding: const MaterialStatePropertyAll(EdgeInsets.only(left: 0)),
+                      shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: AppDimensions.borderButtonRadius,
+                        )
+                      ),
+                    ),
                     child:
                         const Text('Add to calendar', style: styleTextButton),
                   ),
@@ -144,7 +149,7 @@ class _SingleEventState extends State<SingleEvent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 5),
+                padding: EdgeInsets.only(top: 3),
                 child: Icon(Icons.location_on_outlined, size: 16),
               ),
               const SizedBox(width: 10),
@@ -154,12 +159,17 @@ class _SingleEventState extends State<SingleEvent> {
                 children: [
                   Text(_event.name, style: textStyleGenerate),
                   const SizedBox(height: 5),
-                  Text(_event.address!),
+                  if (_event.address != null) Text(_event.address!),
                   TextButton(
                     onPressed: _onPressItem,
-                    style: const ButtonStyle(
-                        padding:
-                            MaterialStatePropertyAll(EdgeInsets.only(left: 0))),
+                    style: ButtonStyle(
+                      padding: const MaterialStatePropertyAll(EdgeInsets.only(left: 0)),
+                      shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: AppDimensions.borderButtonRadius,
+                        )
+                      ),
+                    ),
                     child: const Text('View on maps', style: styleTextButton),
                   ),
                 ],
@@ -199,12 +209,10 @@ class _SingleEventState extends State<SingleEvent> {
                   children: [
                     IconButton(
                       onPressed: () => widget.router.goBack(context),
-                      icon: const Icon(Icons.arrow_back_ios,
-                          color: AppColors.white),
+                      icon: const Icon(Icons.arrow_back_ios),
                     ),
                     SizedBox(
-                      child: ActionWidget(
-                          eventId: _event.id!, iconColor: AppColors.white),
+                      child: ActionWidget(eventId: _event.id!),
                     )
                   ],
                 ),
@@ -242,6 +250,14 @@ class _SingleEventState extends State<SingleEvent> {
               height: 45,
               child: FilledButton(
                 onPressed: _onPressedDeleteEvent,
+                style: ButtonStyle(
+                  backgroundColor: const MaterialStatePropertyAll(AppColors.dangerColor),
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: AppDimensions.borderButtonRadius,
+                    )
+                  ),
+                ),
                 child: buildDeleteButton(),
               ),
             )

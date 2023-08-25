@@ -66,4 +66,6 @@ class Event {
   }
 
   String getFormatTime() => formatTime(time);
+
+  String getFromToTime() => '${customFormatTime(time, 'h:mm a')} - ${customFormatTime(timeEnd!, 'h:mm a')}';
 }

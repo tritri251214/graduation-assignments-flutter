@@ -10,4 +10,5 @@ class AppDimensions {
   static BorderRadius newBadgeBorderRadius = BorderRadius.circular(4.0);
   static BorderRadius imageListBorderRadius =
       const BorderRadius.all(Radius.circular(8.0));
+  static BorderRadius borderButtonRadius = const BorderRadius.all(Radius.circular(10.0));
 }
