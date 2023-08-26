@@ -47,40 +47,46 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.bookmark,
-                            color: AppColors.primaryColor, size: 40),
-                        const SizedBox(width: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(ticket.title,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16)),
-                            Text(ticket.getFormatTime()),
-                          ],
-                        )
-                      ],
-                    ),
-                    buildNumberOfTicket(ticket.numberOfTicket),
-                  ],
+              Expanded(
+                flex: 2,
+                child: Container(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.bookmark,
+                              color: AppColors.primaryColor, size: 40),
+                          const SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(ticket.title,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 16)),
+                              Text(ticket.getFormatTime()),
+                            ],
+                          )
+                        ],
+                      ),
+                      buildNumberOfTicket(ticket.numberOfTicket),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(
-                width: 150,
-                height: double.infinity,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(8.0),
-                      bottomRight: Radius.circular(8.0)),
-                  child: Image.network(ticket.image, fit: BoxFit.cover),
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  width: 150,
+                  height: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(8.0),
+                        bottomRight: Radius.circular(8.0)),
+                    child: Image.network(ticket.image, fit: BoxFit.cover),
+                  ),
                 ),
               ),
             ],

@@ -1,6 +1,9 @@
+// ignore: depend_on_referenced_packages
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/colors.dart';
 import 'package:graduation_assignments_flutter/common/dimensions.dart';
+import 'package:graduation_assignments_flutter/common/storage.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
 
@@ -17,14 +20,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _switchCopyEvent = false;
   bool _isEditName = false;
   late TextEditingController _controller;
+  final AppStorage storage = Get.put(AppStorage());
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: 'Minh Tri');
+    _controller = TextEditingController(text: storage.profileName);
   }
 
   Future<void> _onSubmitTextName(String text) async {
+    storage.setProfileName(text);
     setState(() {
       _isEditName = false;
     });
@@ -58,36 +63,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  _isEditName ?
-                    SizedBox(
-                      width: 180,
-                      child: TextField(
-                        controller: _controller,
-                        onSubmitted: _onSubmitTextName,
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            padding: const EdgeInsets.all(0),
-                            onPressed: () =>
-                                _onSubmitTextName(_controller.text),
-                            icon: const Icon(Icons.send_outlined, size: 16),
+                  _isEditName
+                      ? SizedBox(
+                          width: 180,
+                          child: TextField(
+                            controller: _controller,
+                            onSubmitted: _onSubmitTextName,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                padding: const EdgeInsets.all(0),
+                                onPressed: () =>
+                                    _onSubmitTextName(_controller.text),
+                                icon: const Icon(Icons.send_outlined, size: 16),
+                              ),
+                              hintText: 'Input name',
+                            ),
                           ),
-                          hintText: 'Input name',
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(_controller.text,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18)),
+                            const SizedBox(width: 5),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isEditName = true;
+                                  });
+                                },
+                                icon:
+                                    const Icon(Icons.edit_outlined, size: 16)),
+                          ],
                         ),
-                      ),
-                    ) : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(_controller.text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                        const SizedBox(width: 5),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _isEditName = true;
-                              });
-                            },
-                            icon: const Icon(Icons.edit_outlined, size: 16)),
-                      ],
-                    ),
                   const SizedBox(height: 5),
                   const Text('infor@tma.com.vn'),
                 ],
@@ -176,41 +185,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 150,
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(14),
-              child: SizedBox(
-                width: double.infinity,
-                height: 60.0,
-                child: OutlinedButton(
-                  onPressed: _onLogout,
-                  style: ButtonStyle(
-                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: AppDimensions.borderButtonRadius,
-                    )),
-                    textStyle: const MaterialStatePropertyAll(
-                      TextStyle(
-                          color: AppColors.placeholderText,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+          width: double.infinity,
+          height: 150,
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(14),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 60.0,
+                  child: OutlinedButton(
+                    onPressed: _onLogout,
+                    style: ButtonStyle(
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: AppDimensions.borderButtonRadius,
+                      )),
+                      textStyle: const MaterialStatePropertyAll(
+                        TextStyle(
+                            color: AppColors.placeholderText,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
                     ),
+                    child: const Text('Logout'),
                   ),
-                  child: const Text('Logout'),
                 ),
               ),
-            ),
-            const BottomNavigationBarWidget(selectedMenu: Menu.profile),
-          ],
-        )
-      ),
+              const BottomNavigationBarWidget(selectedMenu: Menu.profile),
+            ],
+          )),
     );
   }
 }

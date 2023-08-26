@@ -84,17 +84,16 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         ),
         centerTitle: false,
       ),
-      body: SingleChildScrollView(
+      body: !_isLoading && _favoriteData.isEmpty ? buildEmpty() : SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),
         physics: _favoriteData.isEmpty
             ? const NeverScrollableScrollPhysics()
             : const ScrollPhysics(),
-        child: !_isLoading && _favoriteData.isEmpty
-            ? buildEmpty()
-            : ListEventsWidget(
-                loading: _isLoading,
-                eventData: _favoriteData,
-                displayLatest: false),
+        child: ListEventsWidget(
+          loading: _isLoading,
+          eventData: _favoriteData,
+          displayLatest: false,
+        ),
       ),
       bottomNavigationBar:
           const BottomNavigationBarWidget(selectedMenu: Menu.favorites),

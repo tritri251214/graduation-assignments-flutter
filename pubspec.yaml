@@ -42,6 +42,7 @@ dependencies:
   permission_handler: ^10.4.3
   intl: ^0.18.1
   collection: ^1.17.2
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
