@@ -9,6 +9,8 @@ class AppRouter {
     NewEvent.routeName: (_) => const NewEvent(),
     SearchEventsScreen.routeName: (_) => const SearchEventsScreen(),
     TicketScreen.routeName: (_) => const TicketScreen(),
+    FavoriteScreen.routeName: (_) => const FavoriteScreen(),
+    ProfileScreen.routeName: (_) => const ProfileScreen(),
   };
 
   static CupertinoPageRoute? onGenerateRoute(RouteSettings settings) {

@@ -158,4 +158,26 @@ class EventProvider with ChangeNotifier {
     eventData.clear();
     return getListEvent();
   }
+
+  Future<List<Event>> getFavoritesEvent() async {
+    try {
+      List<dynamic> response = await get('events?favorite=true');
+      if (response.isEmpty) {
+        return [];
+      }
+      final List<Event> loadedEventData = [];
+      for (var item in response) {
+        loadedEventData.add(
+          Event.fromJson(item),
+        );
+      }
+      loadedEventData;
+      return loadedEventData;
+    } catch (error) {
+      // ignore: avoid_print
+      print('getFavoritesEvent: $error');
+      // ignore: use_rethrow_when_possible
+      throw error;
+    }
+  }
 }
