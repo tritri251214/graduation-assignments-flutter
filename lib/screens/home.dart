@@ -61,20 +61,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(14.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeaderWidget(widget: widget, loading: _isLoading),
-            const SizedBox(height: 16),
-            const Text('Popular in Viet Nam', style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 16),
-            LatestEventWidget(loading: _isLoading),
-            const SizedBox(height: 16),
-            ListEventsWidget(loading: _isLoading, eventData: _eventData),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(14.0),
+          physics: _isLoading ? const NeverScrollableScrollPhysics() : const ScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderWidget(widget: widget, loading: _isLoading),
+              const SizedBox(height: 16),
+              const Text('Popular in Viet Nam', style: TextStyle(fontSize: 16)),
+              const SizedBox(height: 16),
+              const LatestEventWidget(),
+              const SizedBox(height: 16),
+              ListEventsWidget(loading: _isLoading, eventData: _eventData),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar:

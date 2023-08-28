@@ -25,13 +25,13 @@ class Event {
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
-      id: json['id'] as int,
+      id: int.parse(json['id'].toString()),
       name: json['name'].toString(),
       time: json['time'].toString(),
       location: json['location'].toString(),
       image: json['image'].toString(),
-      price: json['price'] as double,
-      favourite: json['favourite'] as bool,
+      price: double.parse(json['price'].toString()),
+      favourite: bool.parse(json['favourite'].toString()),
       address: json['address'].toString(),
       timeEnd: json['timeEnd'].toString(),
     );

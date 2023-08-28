@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
+import 'package:graduation_assignments_flutter/utils/screen_size.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/action.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
@@ -35,6 +37,7 @@ class _SingleEventState extends State<SingleEvent> {
   late EventProvider _eventProvider;
   static const textStyleGenerate =
       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  late Size screenSize = getScreenSize(context);
 
   @override
   void initState() {
@@ -195,13 +198,15 @@ class _SingleEventState extends State<SingleEvent> {
         preferredSize: const Size.fromHeight(200),
         child: _isLoading
             ? const LoadingImage()
-            : Container(
+            : CachedNetworkImage(
+              imageUrl: _event.image,
+              imageBuilder: (_, imageProvider) => Container(
                 padding: const EdgeInsets.all(14),
                 height: double.infinity,
                 alignment: Alignment.bottomCenter,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(_event.image),
+                    image: imageProvider,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -218,6 +223,13 @@ class _SingleEventState extends State<SingleEvent> {
                   ],
                 ),
               ),
+              placeholder: (_, __) => const LoadingImage(
+                  width: double.infinity, height: double.infinity),
+              errorWidget: (_, __, ___) => const Icon(
+                  Icons.image_outlined,
+                  color: AppColors.dangerColor,
+                  size: 40),
+            ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),
@@ -225,45 +237,47 @@ class _SingleEventState extends State<SingleEvent> {
       ),
       bottomNavigationBar: Container(
         width: double.infinity,
-        height: 80,
+        height: screenSize.height * 0.13,
         decoration: const BoxDecoration(
           color: AppColors.backgroundCard,
         ),
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Price', style: textStyleGenerate),
-                const SizedBox(height: 5),
-                Expanded(
-                  child: _isLoading
-                      ? const LoadingText()
-                      : Text('\$ ${_event.price}'),
-                ),
-              ],
-            ),
-            const SizedBox(width: 10),
-            SizedBox(
-              width: 190,
-              height: 45,
-              child: FilledButton(
-                onPressed: _onPressedDeleteEvent,
-                style: ButtonStyle(
-                  backgroundColor:
-                      const MaterialStatePropertyAll(AppColors.dangerColor),
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                    borderRadius: AppDimensions.borderButtonRadius,
-                  )),
-                ),
-                child: buildDeleteButton(),
+        child: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Price', style: textStyleGenerate),
+                  const SizedBox(height: 5),
+                  Expanded(
+                    child: _isLoading
+                        ? const LoadingText()
+                        : Text('\$ ${_event.price}'),
+                  ),
+                ],
               ),
-            )
-          ],
+              const SizedBox(width: 10),
+              SizedBox(
+                width: 190,
+                height: double.maxFinite,
+                child: FilledButton(
+                  onPressed: _onPressedDeleteEvent,
+                  style: ButtonStyle(
+                    backgroundColor:
+                        const MaterialStatePropertyAll(AppColors.dangerColor),
+                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: AppDimensions.borderButtonRadius,
+                    )),
+                  ),
+                  child: buildDeleteButton(),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

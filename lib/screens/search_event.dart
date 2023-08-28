@@ -135,10 +135,12 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
               ],
             )),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(14.0),
-        child: ListEventsWidget(
-            loading: _isLoading, eventData: _searchData, displayLatest: false),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(14.0),
+          child: ListEventsWidget(
+              loading: _isLoading, eventData: _searchData, displayLatest: false),
+        ),
       ),
       bottomNavigationBar:
           const BottomNavigationBarWidget(selectedMenu: Menu.search),

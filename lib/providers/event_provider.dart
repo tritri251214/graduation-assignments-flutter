@@ -10,13 +10,6 @@ class EventProvider with ChangeNotifier {
   List<Event> get eventData => _eventData;
   List<Event> get favouriteEventData => _favouriteEventData;
 
-  Event? get latestEvent {
-    if (_eventData.isEmpty) {
-      return null;
-    }
-    return _eventData[0];
-  }
-
   set eventData(List<Event> data) {
     _eventData = data;
     notifyListeners();
@@ -43,6 +36,27 @@ class EventProvider with ChangeNotifier {
     } catch (error) {
       // ignore: avoid_print
       print('getListEvent: $error');
+      // ignore: use_rethrow_when_possible
+      throw error;
+    }
+  }
+
+  Future<Event?> getLatestEvent() async {
+    try {
+      final List<dynamic> response = await get('events?_sort=time&order=acs');
+      if (response.isEmpty) {
+        return null;
+      }
+      final List<Event> loadedEventData = [];
+      for (var item in response) {
+        loadedEventData.add(
+          Event.fromJson(item),
+        );
+      }
+      return loadedEventData[loadedEventData.length - 1];
+    } catch (error) {
+      // ignore: avoid_print
+      print('getLatestEvent: $error');
       // ignore: use_rethrow_when_possible
       throw error;
     }
