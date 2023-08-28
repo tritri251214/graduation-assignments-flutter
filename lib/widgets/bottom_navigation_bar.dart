@@ -50,9 +50,13 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
 
   BottomNavigationBarItem buildItem(IconData iconData, Menu label) {
     return BottomNavigationBarItem(
+      activeIcon: Icon(
+        iconData,
+        color: Colors.black,
+      ),
       icon: Icon(
         iconData,
-        color: widget.selectedMenu == label  ? Colors.black : Colors.grey,
+        color: Colors.grey,
       ),
       label: label.toString(),
     );
@@ -95,6 +99,7 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
       currentIndex: selectedMenu,
       selectedItemColor: Colors.black,
       onTap: _onChangeMenu,
+      type: BottomNavigationBarType.fixed,
     );
   }
 }

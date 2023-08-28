@@ -73,6 +73,7 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
         _sorter = Sorter.asc;
       });
     }
+    _onSearch(_controller.text);
   }
 
   @override
@@ -106,7 +107,8 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${_searchData.length} Events', style: const TextStyle(fontWeight: FontWeight.bold)),
+                      Text('${_searchData.length} Events',
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                       TextButton(
                         onPressed: _onPressedSorter,
                         style: const ButtonStyle(

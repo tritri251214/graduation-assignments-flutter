@@ -29,6 +29,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _controller = TextEditingController(text: storage.profileName);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Future<void> _onSubmitTextName(String text) async {
     storage.setProfileName(text);
     setState(() {

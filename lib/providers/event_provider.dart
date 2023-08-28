@@ -60,8 +60,7 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<List<Event>> searchEvents(
-      String textSearch, String sortBy, String sortType) async {
+  Future<List<Event>> searchEvents(String textSearch, String sortBy, String sortType) async {
     try {
       late List<dynamic> response;
       if (textSearch == '') {
