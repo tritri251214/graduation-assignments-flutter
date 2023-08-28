@@ -74,7 +74,8 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<List<Event>> searchEvents(String textSearch, String sortBy, String sortType) async {
+  Future<List<Event>> searchEvents(
+      String textSearch, String sortBy, String sortType) async {
     try {
       late List<dynamic> response;
       if (textSearch == '') {
@@ -107,8 +108,6 @@ class EventProvider with ChangeNotifier {
       final response = await post('events', data: data);
 
       return Event.fromJson(json.decode(response.body));
-      // getListEvent();
-      // return event;
     } catch (error) {
       // ignore: avoid_print
       print('addEvent: $error');
@@ -122,8 +121,6 @@ class EventProvider with ChangeNotifier {
       final response = await put('events/${data.id}', data: data);
 
       return Event.fromJson(json.decode(response.body));
-      // getListEvent();
-      // return event;
     } catch (error) {
       // ignore: use_rethrow_when_possible
       throw error;
@@ -134,6 +131,7 @@ class EventProvider with ChangeNotifier {
     try {
       await delete('events/$eventId');
       _eventData.removeWhere((event) => event.id == eventId);
+      notifyListeners();
       return true;
     } catch (error) {
       // ignore: avoid_print
@@ -150,7 +148,7 @@ class EventProvider with ChangeNotifier {
       event.favourite = true;
       final response = await put('events/$eventId', data: event.toJson());
       Event newEvent = Event.fromJson(response);
-      _eventData[index] = newEvent;
+      _eventData[index].favourite = true;
       notifyListeners();
       return newEvent;
     } catch (error) {

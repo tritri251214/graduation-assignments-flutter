@@ -82,22 +82,12 @@ class _TicketScreenState extends State<TicketScreen>
               labelColor: AppColors.white,
               unselectedLabelColor: AppColors.backgroundCard,
               dividerColor: Colors.transparent,
-              tabs: [
+              tabs: const [
                 Tab(
-                  child: Text('Upcomming',
-                      style: TextStyle(
-                          fontWeight: _tabController.index == 0
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          fontSize: 16)),
+                  child: Text('Upcomming', style: TextStyle(fontSize: 16)),
                 ),
                 Tab(
-                  child: Text('Past tickets',
-                      style: TextStyle(
-                          fontWeight: _tabController.index == 1
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          fontSize: 16)),
+                  child: Text('Past tickets', style: TextStyle(fontSize: 16)),
                 ),
               ],
             ),

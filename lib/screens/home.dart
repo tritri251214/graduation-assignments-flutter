@@ -21,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late EventProvider _eventProvider;
   bool _isLoading = false;
-  List<Event> _eventData = [];
 
   @override
   void initState() {
@@ -46,9 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       await _eventProvider.getListEvent();
-      setState(() {
-        _eventData = _eventProvider.eventData;
-      });
     } catch (error) {
       // todo
     } finally {
@@ -60,11 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Event> eventData = context.watch<EventProvider>().eventData;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(14.0),
-          physics: _isLoading ? const NeverScrollableScrollPhysics() : const ScrollPhysics(),
+          physics: _isLoading
+              ? const NeverScrollableScrollPhysics()
+              : const ScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               const LatestEventWidget(),
               const SizedBox(height: 16),
-              ListEventsWidget(loading: _isLoading, eventData: _eventData),
+              ListEventsWidget(loading: _isLoading, eventData: eventData),
             ],
           ),
         ),

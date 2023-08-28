@@ -141,20 +141,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('Copy Event to calendar'),
-                    SizedBox(
-                      width: 50,
-                      height: 40,
-                      child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: Switch.adaptive(
-                          value: _switchCopyEvent,
-                          onChanged: (bool value) {
-                            setState(() {
-                              _switchCopyEvent = value;
-                            });
-                          },
-                        ),
-                      ),
+                    Switch.adaptive(
+                      value: _switchCopyEvent,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _switchCopyEvent = value;
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -210,26 +203,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(14),
-                  color: AppColors.white,
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 60.0,
-                    child: OutlinedButton(
-                      onPressed: _onLogout,
-                      style: ButtonStyle(
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: AppDimensions.borderButtonRadius,
-                        )),
-                        textStyle: const MaterialStatePropertyAll(
-                          TextStyle(
-                              color: AppColors.placeholderText,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(14),
+                    color: AppColors.white,
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 60.0,
+                      child: OutlinedButton(
+                        onPressed: _onLogout,
+                        style: ButtonStyle(
+                          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: AppDimensions.borderButtonRadius,
+                          )),
+                          textStyle: const MaterialStatePropertyAll(
+                            TextStyle(
+                                color: AppColors.placeholderText,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
                         ),
+                        child: const Text('Logout'),
                       ),
-                      child: const Text('Logout'),
                     ),
                   ),
                 ),

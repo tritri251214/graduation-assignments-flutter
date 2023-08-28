@@ -174,7 +174,7 @@ class _NewEventState extends State<NewEvent> {
       bottomNavigationBar: SafeArea(
         child: Container(
           width: double.infinity,
-          height: screenSize.height * 0.08,
+          height: screenSize.height * 0.1,
           decoration: const BoxDecoration(
             color: Colors.transparent,
           ),
