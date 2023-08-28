@@ -3,6 +3,7 @@ import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/ticket.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ListTicketsTab extends StatefulWidget {
   const ListTicketsTab({
@@ -57,18 +58,25 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.bookmark,
-                              color: AppColors.primaryColor, size: 40),
-                          const SizedBox(width: 10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(ticket.title,
+                          const Expanded(
+                            flex: 1,
+                            child: Icon(Icons.bookmark, color: AppColors.primaryColor, size: 40),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(ticket.title,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
+                                  maxLines: 1,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 16)),
-                              Text(ticket.getFormatTime()),
-                            ],
-                          )
+                                Text(ticket.getFormatTime()),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                       buildNumberOfTicket(ticket.numberOfTicket),
@@ -85,7 +93,19 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(8.0),
                         bottomRight: Radius.circular(8.0)),
-                    child: Image.network(ticket.image, fit: BoxFit.cover),
+                    child: CachedNetworkImage(
+                      imageUrl: ticket.image,
+                      imageBuilder: (_, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      placeholder: (_, __) => const LoadingImage(width: double.infinity, height: double.infinity),
+                      errorWidget: (_, __, ___) => const Icon(Icons.image_outlined, color: AppColors.dangerColor, size: 40),
+                    ),
                   ),
                 ),
               ),

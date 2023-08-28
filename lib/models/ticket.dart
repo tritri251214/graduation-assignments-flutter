@@ -18,7 +18,7 @@ class Ticket {
   factory Ticket.fromJson(Map<String, dynamic> json) {
     return Ticket(
       id: json['id'] as int,
-      title: json['name'].toString(),
+      title: json['title'].toString(),
       time: json['time'].toString(),
       numberOfTicket: json['numberOfTicket'],
       image: json['image'].toString(),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
+import 'package:graduation_assignments_flutter/common/storage.dart';
 import 'package:graduation_assignments_flutter/providers/providers.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/screens/screens.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'package:get_storage/get_storage.dart';
 
 void main() async {
-  await GetStorage.init('MyStorage');
+  await AppStorage.init();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 

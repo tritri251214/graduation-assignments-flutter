@@ -6,6 +6,7 @@ import 'package:graduation_assignments_flutter/common/dimensions.dart';
 import 'package:graduation_assignments_flutter/common/storage.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
+import 'package:graduation_assignments_flutter/widgets/null_text.dart';
 
 class ProfileScreen extends StatefulWidget {
   static String routeName = '/profile';
@@ -83,9 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(_controller.text,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18)),
+                            NullText(text: _controller.text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                             const SizedBox(width: 5),
                             IconButton(
                                 onPressed: () {

@@ -9,7 +9,7 @@ class TicketProvider with ChangeNotifier {
 
   Future<void> getListTicket() async {
     try {
-      final List<dynamic> response = await get('events');
+      final List<dynamic> response = await get('tickets?_sort=time&order=asc');
       if (response.isEmpty) {
         return;
       }

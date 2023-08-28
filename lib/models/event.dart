@@ -7,7 +7,7 @@ class Event {
   String location;
   double price;
   String image;
-  bool? favorite;
+  bool? favourite;
   String? address;
   String? timeEnd;
 
@@ -16,7 +16,7 @@ class Event {
     required this.time,
     required this.image,
     required this.location,
-    required this.favorite,
+    required this.favourite,
     required this.id,
     required this.price,
     this.address,
@@ -31,7 +31,7 @@ class Event {
       location: json['location'].toString(),
       image: json['image'].toString(),
       price: json['price'] as double,
-      favorite: json['favorite'] as bool,
+      favourite: json['favourite'] as bool,
       address: json['address'].toString(),
       timeEnd: json['timeEnd'].toString(),
     );
@@ -44,7 +44,7 @@ class Event {
       location: '',
       image: '',
       price: 0,
-      favorite: false,
+      favourite: false,
       id: null,
       address: '',
       timeEnd: '',
@@ -59,7 +59,7 @@ class Event {
       'location': location,
       'image': image,
       'price': price,
-      'favorite': favorite,
+      'favourite': favourite,
       'address': address ?? '',
       'timeEnd': timeEnd ?? '',
     };

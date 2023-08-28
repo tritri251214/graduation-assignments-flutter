@@ -4,17 +4,32 @@ import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 
 class EventProvider with ChangeNotifier {
-  List<Event> eventData = [];
+  List<Event> _eventData = [];
+  List<Event> _favouriteEventData = [];
+
+  List<Event> get eventData => _eventData;
+  List<Event> get favouriteEventData => _favouriteEventData;
+
   Event? get latestEvent {
-    if (eventData.isEmpty) {
+    if (_eventData.isEmpty) {
       return null;
     }
-    return eventData[0];
+    return _eventData[0];
+  }
+
+  set eventData(List<Event> data) {
+    _eventData = data;
+    notifyListeners();
+  }
+
+  set favouriteEventData(List<Event> data) {
+    _favouriteEventData = data;
+    notifyListeners();
   }
 
   Future<void> getListEvent() async {
     try {
-      final List<dynamic> response = await get('events');
+      final List<dynamic> response = await get('events?_sort=time&order=acs');
       if (response.isEmpty) {
         return;
       }
@@ -25,7 +40,6 @@ class EventProvider with ChangeNotifier {
         );
       }
       eventData = loadedEventData;
-      notifyListeners();
     } catch (error) {
       // ignore: avoid_print
       print('getListEvent: $error');
@@ -46,13 +60,15 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<List<Event>> searchEvents(String textSearch, String sortBy, String sortType) async {
+  Future<List<Event>> searchEvents(
+      String textSearch, String sortBy, String sortType) async {
     try {
       late List<dynamic> response;
       if (textSearch == '') {
         response = await get('events?_sort=$sortBy&_order=$sortType');
       } else {
-        response = await get('events?name_like=$textSearch&_sort=$sortBy&_order=$sortType');
+        response = await get(
+            'events?name_like=$textSearch&_sort=$sortBy&_order=$sortType');
       }
       if (response.isEmpty) {
         return [];
@@ -104,7 +120,7 @@ class EventProvider with ChangeNotifier {
   Future<bool> deleteEvent(int eventId) async {
     try {
       await delete('events/$eventId');
-      eventData.removeWhere((event) => event.id == eventId);
+      _eventData.removeWhere((event) => event.id == eventId);
       return true;
     } catch (error) {
       // ignore: avoid_print
@@ -114,14 +130,14 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<Event> favoriteEvent(int eventId) async {
+  Future<Event> favouriteEvent(int eventId) async {
     try {
-      int index = eventData.indexWhere((item) => item.id == eventId);
-      Event event = eventData[index];
-      event.favorite = true;
+      int index = _eventData.indexWhere((item) => item.id == eventId);
+      Event event = _eventData[index];
+      event.favourite = true;
       final response = await put('events/$eventId', data: event.toJson());
       Event newEvent = Event.fromJson(response);
-      eventData[index] = newEvent;
+      _eventData[index] = newEvent;
       notifyListeners();
       return newEvent;
     } catch (error) {
@@ -132,14 +148,14 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<Event> unFavoriteEvent(int eventId) async {
+  Future<Event> unFavouriteEvent(int eventId) async {
     try {
-      int index = eventData.indexWhere((item) => item.id == eventId);
-      Event event = eventData[index];
-      event.favorite = false;
+      int index = _eventData.indexWhere((item) => item.id == eventId);
+      Event event = _eventData[index];
+      event.favourite = false;
       final response = await put('events/$eventId', data: event.toJson());
       Event newEvent = Event.fromJson(response);
-      eventData[index] = newEvent;
+      _eventData[index] = newEvent;
       notifyListeners();
       return newEvent;
     } catch (error) {
@@ -151,19 +167,19 @@ class EventProvider with ChangeNotifier {
   }
 
   Event getEventById(int eventId) {
-    return eventData.firstWhere((item) => item.id == eventId);
+    return _eventData.firstWhere((item) => item.id == eventId);
   }
 
-  Future<void> refresh() {
-    eventData.clear();
-    return getListEvent();
+  Future<void> refreshFavourites() {
+    _favouriteEventData.clear();
+    return getFavouritesEvent();
   }
 
-  Future<List<Event>> getFavoritesEvent() async {
+  Future<void> getFavouritesEvent() async {
     try {
-      List<dynamic> response = await get('events?favorite=true');
+      List<dynamic> response = await get('events?favourite=true');
       if (response.isEmpty) {
-        return [];
+        return;
       }
       final List<Event> loadedEventData = [];
       for (var item in response) {
@@ -171,8 +187,8 @@ class EventProvider with ChangeNotifier {
           Event.fromJson(item),
         );
       }
-      loadedEventData;
-      return loadedEventData;
+      favouriteEventData = loadedEventData;
+      return;
     } catch (error) {
       // ignore: avoid_print
       print('getFavoritesEvent: $error');

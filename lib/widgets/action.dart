@@ -31,7 +31,7 @@ class _ActionWidgetState extends State<ActionWidget> {
   void _reload() {
     Event event = _eventProvider.getEventById(widget.eventId);
     setState(() {
-      _statusFavorite = event.favorite as bool;
+      _statusFavorite = event.favourite as bool;
     });
   }
 
@@ -40,9 +40,9 @@ class _ActionWidgetState extends State<ActionWidget> {
       _isLoadingFavorite = true;
     });
     try {
-      Event event = await _eventProvider.favoriteEvent(widget.eventId);
+      Event event = await _eventProvider.favouriteEvent(widget.eventId);
       setState(() {
-        _statusFavorite = event.favorite as bool;
+        _statusFavorite = event.favourite as bool;
       });
       // ignore: use_build_context_synchronously
       showSnackBar(
@@ -61,12 +61,12 @@ class _ActionWidgetState extends State<ActionWidget> {
       _isLoadingFavorite = true;
     });
     try {
-      Event event = await _eventProvider.unFavoriteEvent(widget.eventId);
+      Event event = await _eventProvider.unFavouriteEvent(widget.eventId);
       setState(() {
-        _statusFavorite = event.favorite as bool;
+        _statusFavorite = event.favourite as bool;
       });
       // ignore: use_build_context_synchronously
-      showSnackBar(context, const Text('Un favorite successfully'),
+      showSnackBar(context, const Text('Un favourite successfully'),
           TypeSnackBar.success);
     } catch (e) {
       // todo

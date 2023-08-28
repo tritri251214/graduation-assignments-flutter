@@ -6,6 +6,7 @@ import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/action.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
+import 'package:graduation_assignments_flutter/widgets/null_text.dart';
 import 'package:provider/provider.dart';
 
 class SingleEventArguments {
@@ -77,6 +78,8 @@ class _SingleEventState extends State<SingleEvent> {
         showSnackBar(context, const Text('Deleted event successfully!'),
             TypeSnackBar.success);
       }
+      // ignore: use_build_context_synchronously
+      widget.router.goBack(context);
     } catch (error) {
       // todo
     } finally {
@@ -129,12 +132,11 @@ class _SingleEventState extends State<SingleEvent> {
                   TextButton(
                     onPressed: _onPressItem,
                     style: ButtonStyle(
-                      padding: const MaterialStatePropertyAll(EdgeInsets.only(left: 0)),
-                      shape: MaterialStatePropertyAll(
-                        RoundedRectangleBorder(
-                          borderRadius: AppDimensions.borderButtonRadius,
-                        )
-                      ),
+                      padding: const MaterialStatePropertyAll(
+                          EdgeInsets.only(left: 0)),
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: AppDimensions.borderButtonRadius,
+                      )),
                     ),
                     child:
                         const Text('Add to calendar', style: styleTextButton),
@@ -159,16 +161,15 @@ class _SingleEventState extends State<SingleEvent> {
                 children: [
                   Text(_event.name, style: textStyleGenerate),
                   const SizedBox(height: 5),
-                  if (_event.address != null) Text(_event.address!),
+                  NullText(text: _event.address!),
                   TextButton(
                     onPressed: _onPressItem,
                     style: ButtonStyle(
-                      padding: const MaterialStatePropertyAll(EdgeInsets.only(left: 0)),
-                      shape: MaterialStatePropertyAll(
-                        RoundedRectangleBorder(
-                          borderRadius: AppDimensions.borderButtonRadius,
-                        )
-                      ),
+                      padding: const MaterialStatePropertyAll(
+                          EdgeInsets.only(left: 0)),
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: AppDimensions.borderButtonRadius,
+                      )),
                     ),
                     child: const Text('View on maps', style: styleTextButton),
                   ),
@@ -240,7 +241,9 @@ class _SingleEventState extends State<SingleEvent> {
                 const Text('Price', style: textStyleGenerate),
                 const SizedBox(height: 5),
                 Expanded(
-                  child: _isLoading ? const LoadingText() : Text('\$ ${_event.price}'),
+                  child: _isLoading
+                      ? const LoadingText()
+                      : Text('\$ ${_event.price}'),
                 ),
               ],
             ),
@@ -251,12 +254,11 @@ class _SingleEventState extends State<SingleEvent> {
               child: FilledButton(
                 onPressed: _onPressedDeleteEvent,
                 style: ButtonStyle(
-                  backgroundColor: const MaterialStatePropertyAll(AppColors.dangerColor),
-                  shape: MaterialStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: AppDimensions.borderButtonRadius,
-                    )
-                  ),
+                  backgroundColor:
+                      const MaterialStatePropertyAll(AppColors.dangerColor),
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: AppDimensions.borderButtonRadius,
+                  )),
                 ),
                 child: buildDeleteButton(),
               ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
@@ -44,8 +45,19 @@ class LatestEventWidget extends StatelessWidget {
                       height: 150.0,
                       child: ClipRRect(
                         borderRadius: AppDimensions.imageCardBorderRadius,
-                        child: Image.network(provider.latestEvent!.image,
-                            fit: BoxFit.cover),
+                        child: CachedNetworkImage(
+                          imageUrl: provider.latestEvent!.image,
+                          imageBuilder: (_, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (_, __) => const LoadingImage(width: double.infinity, height: double.infinity),
+                          errorWidget: (_, __, ___) => const Icon(Icons.image_outlined, color: AppColors.dangerColor, size: 40),
+                        ),
                       ),
                     ),
                     const NewBadgeWidget(),

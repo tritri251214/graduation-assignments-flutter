@@ -16,7 +16,7 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  List<Event> _favoriteData = [];
+  List<Event> _favouriteData = [];
   bool _isLoading = false;
   late EventProvider _eventProvider;
 
@@ -33,11 +33,30 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     });
 
     try {
-      List<Event> events = await _eventProvider.getFavoritesEvent();
+      await _eventProvider.getFavouritesEvent();
       setState(() {
-        _favoriteData = events;
+        _favouriteData = _eventProvider.favouriteEventData;
       });
-    } catch (e) {
+    } catch (error) {
+      // todo
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _onRefresh() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await _eventProvider.refreshFavourites();
+      setState(() {
+        _favouriteData = _eventProvider.favouriteEventData;
+      });
+    } catch (error) {
       // todo
     } finally {
       setState(() {
@@ -49,14 +68,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget buildEmpty() {
     return const Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.favorite, color: AppColors.backgroundCard, size: 150),
-          Text('No favourites yes', style: TextStyle(fontWeight: FontWeight.bold)),
-          Text('Make sure you have added event’s in this section'),
-        ]
-      ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.favorite, color: AppColors.backgroundCard, size: 150),
+            Text('No favourites yes',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Text('Make sure you have added event’s in this section'),
+          ]),
     );
   }
 
@@ -75,7 +94,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               width: 26,
               height: 26,
               child: Badge.count(
-                count: _favoriteData.length,
+                count: _favouriteData.length,
                 textStyle: const TextStyle(fontSize: 20),
                 backgroundColor: AppColors.primaryColor,
               ),
@@ -83,18 +102,24 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ],
         ),
         centerTitle: false,
+        actions: [
+          IconButton(
+              onPressed: _onRefresh, icon: const Icon(Icons.refresh_outlined))
+        ],
       ),
-      body: !_isLoading && _favoriteData.isEmpty ? buildEmpty() : SingleChildScrollView(
-        padding: const EdgeInsets.all(14.0),
-        physics: _favoriteData.isEmpty
-            ? const NeverScrollableScrollPhysics()
-            : const ScrollPhysics(),
-        child: ListEventsWidget(
-          loading: _isLoading,
-          eventData: _favoriteData,
-          displayLatest: false,
-        ),
-      ),
+      body: !_isLoading && _favouriteData.isEmpty
+          ? buildEmpty()
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(14.0),
+              physics: _favouriteData.isEmpty
+                  ? const NeverScrollableScrollPhysics()
+                  : const ScrollPhysics(),
+              child: ListEventsWidget(
+                loading: _isLoading,
+                eventData: _favouriteData,
+                displayLatest: false,
+              ),
+            ),
       bottomNavigationBar:
           const BottomNavigationBarWidget(selectedMenu: Menu.favorites),
     );
