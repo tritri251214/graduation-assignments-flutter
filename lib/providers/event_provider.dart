@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
@@ -22,7 +21,7 @@ class EventProvider with ChangeNotifier {
 
   Future<void> getListEvent() async {
     try {
-      final List<dynamic> response = await get('events?_sort=time&order=acs');
+      final List<dynamic> response = await get('events?_sort=id&order=acs');
       if (response.isEmpty) {
         return;
       }
@@ -107,7 +106,7 @@ class EventProvider with ChangeNotifier {
     try {
       final response = await post('events', data: data);
 
-      return Event.fromJson(json.decode(response.body));
+      return Event.fromJson(response);
     } catch (error) {
       // ignore: avoid_print
       print('addEvent: $error');
@@ -120,7 +119,7 @@ class EventProvider with ChangeNotifier {
     try {
       final response = await put('events/${data.id}', data: data);
 
-      return Event.fromJson(json.decode(response.body));
+      return Event.fromJson(response);
     } catch (error) {
       // ignore: use_rethrow_when_possible
       throw error;
@@ -148,7 +147,7 @@ class EventProvider with ChangeNotifier {
       event.favourite = true;
       final response = await put('events/$eventId', data: event.toJson());
       Event newEvent = Event.fromJson(response);
-      _eventData[index].favourite = true;
+      _eventData[index].favourite = newEvent.favourite;
       notifyListeners();
       return newEvent;
     } catch (error) {
@@ -166,7 +165,7 @@ class EventProvider with ChangeNotifier {
       event.favourite = false;
       final response = await put('events/$eventId', data: event.toJson());
       Event newEvent = Event.fromJson(response);
-      _eventData[index] = newEvent;
+      _eventData[index].favourite = newEvent.favourite;
       notifyListeners();
       return newEvent;
     } catch (error) {

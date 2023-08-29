@@ -56,6 +56,7 @@ Future<dynamic> request(
     case 200:
       return json.decode(response.body);
     case 201:
+      return json.decode(response.body);
     case 204:
       return;
     default:
