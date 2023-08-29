@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 
 class LoadImage extends StatelessWidget {
@@ -22,7 +23,15 @@ class LoadImage extends StatelessWidget {
       ),
       placeholder: (_, __) =>
           const LoadingImage(width: double.infinity, height: double.infinity),
-      errorWidget: (_, __, ___) => const Icon(Icons.image_outlined, color: AppColors.dangerColor, size: 40),
+      errorWidget: (_, __, ___) => Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: AppDimensions.borderButtonRadius,
+          border: Border.all(color: AppColors.dangerColor),
+          color: AppColors.dangerColor,
+        ),
+        child: const EmptyWidget(),
+      ),
     );
   }
 }

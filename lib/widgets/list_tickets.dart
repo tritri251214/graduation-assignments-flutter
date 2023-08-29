@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/ticket.dart';
 import 'package:graduation_assignments_flutter/router.dart';
+import 'package:graduation_assignments_flutter/widgets/load_image.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class ListTicketsTab extends StatefulWidget {
   const ListTicketsTab({
@@ -93,19 +93,7 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(8.0),
                         bottomRight: Radius.circular(8.0)),
-                    child: CachedNetworkImage(
-                      imageUrl: ticket.image,
-                      imageBuilder: (_, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (_, __) => const LoadingImage(width: double.infinity, height: double.infinity),
-                      errorWidget: (_, __, ___) => const Icon(Icons.image_outlined, color: AppColors.dangerColor, size: 40),
-                    ),
+                    child: LoadImage(imageUrl: ticket.image),
                   ),
                 ),
               ),

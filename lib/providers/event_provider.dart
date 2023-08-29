@@ -191,9 +191,10 @@ class EventProvider with ChangeNotifier {
     return getFavouritesEvent();
   }
 
-  Future<void> refreshEvents() {
+  Future<void> refreshEvents() async {
     _eventData.clear();
-    return getListEvent();
+    getListEvent();
+    getLatestEvent();
   }
 
   Future<void> getFavouritesEvent() async {

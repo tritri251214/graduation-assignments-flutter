@@ -65,17 +65,16 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
             Stack(
               alignment: const Alignment(0.95, -0.8),
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: 150.0,
-                  child: ClipRRect(
-                    borderRadius: AppDimensions.imageCardBorderRadius,
-                    child: const Icon(
-                      Icons.image_outlined,
-                      color: AppColors.dangerColor,
-                      weight: double.infinity,
-                    ),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: AppDimensions.borderButtonRadius,
+                    border: Border.all(color: AppColors.dangerColor),
+                    color: AppColors.dangerColor,
                   ),
+                  child: const Image(image: AssetImage('assets/images/empty_data_icon.png')),
                 ),
               ],
             ),
@@ -145,10 +144,15 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                         ),
                         placeholder: (_, __) => const LoadingImage(
                             width: double.infinity, height: double.infinity),
-                        errorWidget: (_, __, ___) => const Icon(
-                            Icons.image_outlined,
+                        errorWidget: (_, __, ___) => Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+                            border: Border.all(color: AppColors.dangerColor),
                             color: AppColors.dangerColor,
-                            size: 40),
+                          ),
+                          child: const Image(image: AssetImage('assets/images/empty_data_icon.png')),
+                        ),
                       ),
                     ),
                   ),

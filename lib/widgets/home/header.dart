@@ -5,6 +5,7 @@ import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
+import 'package:graduation_assignments_flutter/widgets/null_text.dart';
 
 class HeaderWidget extends StatefulWidget {
   const HeaderWidget({super.key, this.router = const AppRouter()});
@@ -16,7 +17,7 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
-  late Placemark _location;
+  Placemark _location = Placemark();
   bool _isLoading = false;
 
   @override
@@ -31,14 +32,18 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     });
 
     try {
-      Position position = await determinePosition();
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
-      setState(() {
-        _location = placemarks[0];
-      });
-    } catch (_) {
-      // todo
+      bool isCallDeterminePosition = await beforeDeterminePosition();
+      if (isCallDeterminePosition) {
+        Position position = await determinePosition();
+        List<Placemark> placemarks =
+            await placemarkFromCoordinates(position.latitude, position.longitude);
+        setState(() {
+          _location = placemarks[0];
+        });
+      }
+    } catch (error) {
+      // ignore: use_build_context_synchronously
+      showSnackBar(context, Text(error.toString()), TypeSnackBar.warning);
     } finally {
       setState(() {
         _isLoading = false;
@@ -71,7 +76,10 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 if (_isLoading)
                   const LoadingText()
                 else
-                  Text(_location.country ?? 'Viet Nam', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  NullText(
+                      text: _location.country,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16)),
               ],
             ),
           ],

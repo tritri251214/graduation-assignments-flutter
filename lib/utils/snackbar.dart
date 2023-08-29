@@ -28,6 +28,7 @@ void showSnackBar(BuildContext context, Widget content, TypeSnackBar type) {
       showCloseIcon: true,
       backgroundColor: backgroundColor,
       content: content,
+      duration: const Duration(seconds: 5),
     ),
   );
 }

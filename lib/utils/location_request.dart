@@ -1,5 +1,16 @@
 import 'package:geolocator/geolocator.dart';
 
+Future<bool> beforeDeterminePosition() async {
+  LocationPermission permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.whileInUse ||
+      permission == LocationPermission.always ||
+      permission == LocationPermission.denied) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 /// Determine the current position of the device.
 ///
 /// When the location services are not enabled or permissions
@@ -33,10 +44,11 @@ Future<Position> determinePosition() async {
   if (permission == LocationPermission.deniedForever) {
     // Permissions are denied forever, handle appropriately.
     return Future.error(
-      'Location permissions are permanently denied, we cannot request permissions.');
+        'Location permissions are permanently denied, we cannot request permissions.');
   }
 
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
-  return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
 }
