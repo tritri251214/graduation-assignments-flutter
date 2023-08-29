@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderWidget(widget: widget, loading: _isLoading),
+              const HeaderWidget(),
               const SizedBox(height: 16),
               const Text('Popular in Viet Nam', style: TextStyle(fontSize: 16)),
               const SizedBox(height: 16),

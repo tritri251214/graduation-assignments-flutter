@@ -1,16 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
-import 'package:graduation_assignments_flutter/screens/screens.dart';
+import 'package:graduation_assignments_flutter/router.dart';
+import 'package:graduation_assignments_flutter/utils/utils.dart';
+import 'package:graduation_assignments_flutter/widgets/loading.dart';
 
-class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({
-    super.key,
-    required this.widget,
-    required this.loading,
-  });
+class HeaderWidget extends StatefulWidget {
+  const HeaderWidget({super.key, this.router = const AppRouter()});
 
-  final HomeScreen widget;
-  final bool loading;
+  final AppRouter router;
+
+  @override
+  State<StatefulWidget> createState() => _HeaderWidgetState();
+}
+
+class _HeaderWidgetState extends State<HeaderWidget> {
+  late Placemark _location;
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    _reload();
+    super.initState();
+  }
+
+  Future<void> _reload() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      Position position = await determinePosition();
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      setState(() {
+        _location = placemarks[0];
+      });
+    } catch (_) {
+      // todo
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +52,26 @@ class HeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Column(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Find events in',
               style: TextStyle(
                 fontSize: 12,
                 color: AppColors.placeholderText,
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               children: [
-                Icon(Icons.location_on_outlined, size: 16),
-                SizedBox(width: 5),
-                Text(
-                  'Viet Nam',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
+                const Icon(Icons.location_on_outlined, size: 16),
+                const SizedBox(width: 5),
+                if (_isLoading)
+                  const LoadingText()
+                else
+                  Text(_location.country ?? 'Viet Nam', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ],
             ),
           ],
