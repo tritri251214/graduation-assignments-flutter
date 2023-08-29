@@ -12,6 +12,7 @@ Future<dynamic> request(
 }) async {
   late Http.Response response;
 
+  // Uri uri = Uri.parse('http://10.0.2.2:3000/$path');
   Uri uri = Uri.parse('http://localhost:3000/$path');
 
   Map<String, String> headers = {

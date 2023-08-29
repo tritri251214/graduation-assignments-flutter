@@ -53,7 +53,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
     Widget buildContent;
     if (_isLoading) {
       buildContent = const LoadingLatestEvent();
-    } else if (latestEvent!.id == null) {
+    } else if (latestEvent == null && latestEvent!.id == null) {
       buildContent = Card(
         margin: const EdgeInsets.all(0),
         color: AppColors.backgroundCard,

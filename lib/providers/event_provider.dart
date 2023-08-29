@@ -5,11 +5,11 @@ import 'package:graduation_assignments_flutter/utils/utils.dart';
 class EventProvider with ChangeNotifier {
   List<Event> _eventData = [];
   List<Event> _favouriteEventData = [];
-  late Event? _lastEvent;
+  Event? _latestEvent;
 
   List<Event> get eventData => _eventData;
   List<Event> get favouriteEventData => _favouriteEventData;
-  Event? get latestEvent => _lastEvent;
+  Event? get latestEvent => _latestEvent;
 
   set eventData(List<Event> data) {
     _eventData = data;
@@ -54,7 +54,7 @@ class EventProvider with ChangeNotifier {
           Event.fromJson(item),
         );
       }
-      _lastEvent = loadedEventData[0];
+      _latestEvent = loadedEventData[0];
       notifyListeners();
     } catch (error) {
       // ignore: avoid_print
@@ -134,7 +134,7 @@ class EventProvider with ChangeNotifier {
       await delete('events/$eventId');
       _eventData.removeWhere((event) => event.id == eventId);
       if (isLatestEvent) {
-        _lastEvent = _eventData[0];
+        _latestEvent = _eventData[0];
       }
       notifyListeners();
       return true;

@@ -489,9 +489,9 @@
       "name": "Roze",
       "time": "2024-04-21T05:35:04Z",
       "location": "Sandvika",
-      "price": 910594703,
       "image": "https://fastly.picsum.photos/id/74/4288/2848.jpg?hmac=q02MzzHG23nkhJYRXR-_RgKTr6fpfwRgcXgE0EKvNB8",
-      "favourite": false,
+      "price": 910594703,
+      "favourite": true,
       "address": "Sandvika",
       "timeEnd": "2022-01-21T23:32:56Z"
     },
@@ -546,7 +546,7 @@
       "location": "Mundybash",
       "image": "https://fastly.picsum.photos/id/79/2000/3011.jpg?hmac=TQsXWj0kLBLRXbSAh2Pygog1-cOefqpjEoKyl0uD3tg",
       "price": 337686126,
-      "favourite": false,
+      "favourite": true,
       "address": "Mundybash",
       "timeEnd": "2022-01-21T23:32:56Z"
     }
