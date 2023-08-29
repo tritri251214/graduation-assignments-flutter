@@ -5,9 +5,11 @@ import 'package:graduation_assignments_flutter/utils/utils.dart';
 class EventProvider with ChangeNotifier {
   List<Event> _eventData = [];
   List<Event> _favouriteEventData = [];
+  late Event? _lastEvent;
 
   List<Event> get eventData => _eventData;
   List<Event> get favouriteEventData => _favouriteEventData;
+  Event? get latestEvent => _lastEvent;
 
   set eventData(List<Event> data) {
     _eventData = data;
@@ -21,7 +23,7 @@ class EventProvider with ChangeNotifier {
 
   Future<void> getListEvent() async {
     try {
-      final List<dynamic> response = await get('events?_sort=id&order=acs');
+      final List<dynamic> response = await get('events?_sort=id&_order=desc');
       if (response.isEmpty) {
         return;
       }
@@ -40,11 +42,11 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<Event?> getLatestEvent() async {
+  Future<void> getLatestEvent() async {
     try {
-      final List<dynamic> response = await get('events?_sort=time&order=acs');
+      final List<dynamic> response = await get('events?_sort=id&_order=desc');
       if (response.isEmpty) {
-        return null;
+        return;
       }
       final List<Event> loadedEventData = [];
       for (var item in response) {
@@ -52,7 +54,8 @@ class EventProvider with ChangeNotifier {
           Event.fromJson(item),
         );
       }
-      return loadedEventData[loadedEventData.length - 1];
+      _lastEvent = loadedEventData[0];
+      notifyListeners();
     } catch (error) {
       // ignore: avoid_print
       print('getLatestEvent: $error');
@@ -105,7 +108,7 @@ class EventProvider with ChangeNotifier {
   Future<Event> addEvent(Event data) async {
     try {
       final response = await post('events', data: data);
-
+      refreshEvents();
       return Event.fromJson(response);
     } catch (error) {
       // ignore: avoid_print
@@ -126,10 +129,13 @@ class EventProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> deleteEvent(int eventId) async {
+  Future<bool> deleteEvent(int eventId, bool isLatestEvent) async {
     try {
       await delete('events/$eventId');
       _eventData.removeWhere((event) => event.id == eventId);
+      if (isLatestEvent) {
+        _lastEvent = _eventData[0];
+      }
       notifyListeners();
       return true;
     } catch (error) {
@@ -183,6 +189,11 @@ class EventProvider with ChangeNotifier {
   Future<void> refreshFavourites() {
     _favouriteEventData.clear();
     return getFavouritesEvent();
+  }
+
+  Future<void> refreshEvents() {
+    _eventData.clear();
+    return getListEvent();
   }
 
   Future<void> getFavouritesEvent() async {

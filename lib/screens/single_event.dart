@@ -37,6 +37,7 @@ class _SingleEventState extends State<SingleEvent> {
   static const textStyleGenerate =
       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
   late Size screenSize = getScreenSize(context);
+  bool isLatestEvent = false;
 
   @override
   void initState() {
@@ -51,10 +52,18 @@ class _SingleEventState extends State<SingleEvent> {
     });
     try {
       Event event = await _eventProvider.getEvent(widget.eventId);
-      setState(() {
-        _event = event;
-      });
-    } catch (error) {
+      Event? lastestEvent = _eventProvider.latestEvent;
+      if (lastestEvent != null && lastestEvent.id == event.id) {
+        setState(() {
+          _event = event;
+          isLatestEvent = true;
+        });
+      } else {
+        setState(() {
+          _event = event;
+        });
+      }
+    } catch (_) {
       setState(() {
         _event = Event.newEvent();
       });
@@ -74,16 +83,18 @@ class _SingleEventState extends State<SingleEvent> {
       _isLoadingDelete = true;
     });
     try {
-      bool result = await _eventProvider.deleteEvent(widget.eventId);
+      bool result = await _eventProvider.deleteEvent(widget.eventId, isLatestEvent);
       if (result) {
         // ignore: use_build_context_synchronously
-        showSnackBar(context, const Text('Deleted event successfully!'),
+        showSnackBar(context, const Text('Deleted event successfully'),
             TypeSnackBar.success);
       }
       // ignore: use_build_context_synchronously
       widget.router.goBack(context);
-    } catch (error) {
-      // todo
+    } catch (_) {
+      // ignore: use_build_context_synchronously
+      showSnackBar(
+          context, const Text('Deleted event fail'), TypeSnackBar.error);
     } finally {
       setState(() {
         _isLoadingDelete = false;
@@ -198,28 +209,28 @@ class _SingleEventState extends State<SingleEvent> {
         child: _isLoading
             ? const LoadingImage()
             : Container(
-              padding: const EdgeInsets.all(14),
-              height: double.infinity,
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(_event.image),
-                  fit: BoxFit.cover,
+                padding: const EdgeInsets.all(14),
+                height: double.infinity,
+                alignment: Alignment.bottomCenter,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(_event.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () => widget.router.goBack(context),
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                    SizedBox(
+                      child: ActionWidget(eventId: _event.id!),
+                    )
+                  ],
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () => widget.router.goBack(context),
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                  SizedBox(
-                    child: ActionWidget(eventId: _event.id!),
-                  )
-                ],
-              ),
-            ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),

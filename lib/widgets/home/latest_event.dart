@@ -23,7 +23,6 @@ class LatestEventWidget extends StatefulWidget {
 }
 
 class _LatestEventWidgetState extends State<LatestEventWidget> {
-  Event _latestEvent = Event.newEvent();
   late EventProvider _eventProvider;
   bool _isLoading = false;
 
@@ -39,13 +38,8 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
       _isLoading = true;
     });
     try {
-      Event? event = await _eventProvider.getLatestEvent();
-      if (event != null) {
-        setState(() {
-          _latestEvent = event;
-        });
-      }
-    } catch (error) {
+      await _eventProvider.getLatestEvent();
+    } catch (_) {
       // todo
     } finally {
       setState(() {
@@ -55,10 +49,11 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
   }
 
   Widget buildRoot(BuildContext context) {
+    Event? latestEvent = context.watch<EventProvider>().latestEvent;
     Widget buildContent;
     if (_isLoading) {
       buildContent = const LoadingLatestEvent();
-    } else if (_latestEvent.id == null) {
+    } else if (latestEvent!.id == null) {
       buildContent = Card(
         margin: const EdgeInsets.all(0),
         color: AppColors.backgroundCard,
@@ -120,7 +115,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
     } else {
       buildContent = InkWell(
         onTap: () {
-          widget.router.gotoSingleEvent(context, _latestEvent.id!);
+          widget.router.gotoSingleEvent(context, latestEvent.id!);
         },
         child: Card(
           margin: const EdgeInsets.all(0),
@@ -139,7 +134,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                     child: ClipRRect(
                       borderRadius: AppDimensions.imageCardBorderRadius,
                       child: CachedNetworkImage(
-                        imageUrl: _latestEvent.image,
+                        imageUrl: latestEvent.image,
                         imageBuilder: (_, imageProvider) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -171,7 +166,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           NullText(
-                              text: _latestEvent.getFormatTime(),
+                              text: latestEvent.getFormatTime(),
                               style: const TextStyle(fontSize: 14)),
                           const SizedBox(height: 8),
                           Row(
@@ -179,13 +174,13 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                               const Icon(Icons.location_on_outlined, size: 16),
                               const SizedBox(width: 5),
                               NullText(
-                                  text: _latestEvent.location,
+                                  text: latestEvent.location,
                                   style: const TextStyle(fontSize: 16)),
                             ],
                           ),
                         ],
                       ),
-                      ActionWidget(eventId: _latestEvent.id!),
+                      ActionWidget(eventId: latestEvent.id!),
                     ]),
               ),
             ],
