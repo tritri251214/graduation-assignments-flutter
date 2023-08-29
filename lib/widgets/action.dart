@@ -19,20 +19,11 @@ class ActionWidget extends StatefulWidget {
 class _ActionWidgetState extends State<ActionWidget> {
   late EventProvider _eventProvider;
   bool _isLoadingFavorite = false;
-  late bool _statusFavorite = false;
 
   @override
   initState() {
-    super.initState();
     _eventProvider = context.read<EventProvider>();
-    _reload();
-  }
-
-  void _reload() {
-    Event event = _eventProvider.getEventById(widget.eventId);
-    setState(() {
-      _statusFavorite = event.favourite as bool;
-    });
+    super.initState();
   }
 
   Future<void> _onPressFavorite() async {
@@ -40,15 +31,14 @@ class _ActionWidgetState extends State<ActionWidget> {
       _isLoadingFavorite = true;
     });
     try {
-      Event event = await _eventProvider.favouriteEvent(widget.eventId);
-      setState(() {
-        _statusFavorite = event.favourite as bool;
-      });
+      await _eventProvider.favouriteEvent(widget.eventId);
       // ignore: use_build_context_synchronously
       showSnackBar(
-          context, const Text('Favorite successfully'), TypeSnackBar.success);
-    } catch (e) {
-      // todo
+          context, const Text('Favourite successfully'), TypeSnackBar.success);
+    } catch (_) {
+      // ignore: use_build_context_synchronously
+      showSnackBar(
+          context, const Text('Favourite failed'), TypeSnackBar.error);
     } finally {
       setState(() {
         _isLoadingFavorite = false;
@@ -61,15 +51,14 @@ class _ActionWidgetState extends State<ActionWidget> {
       _isLoadingFavorite = true;
     });
     try {
-      Event event = await _eventProvider.unFavouriteEvent(widget.eventId);
-      setState(() {
-        _statusFavorite = event.favourite as bool;
-      });
+      await _eventProvider.unFavouriteEvent(widget.eventId);
       // ignore: use_build_context_synchronously
       showSnackBar(context, const Text('Un favourite successfully'),
           TypeSnackBar.success);
-    } catch (e) {
-      // todo
+    } catch (_) {
+      // ignore: use_build_context_synchronously
+      showSnackBar(context, const Text('Un favourite fail'),
+          TypeSnackBar.error);
     } finally {
       setState(() {
         _isLoadingFavorite = false;
@@ -81,11 +70,11 @@ class _ActionWidgetState extends State<ActionWidget> {
     showNeedImplement(context);
   }
 
-  Widget buildIconFavorite() {
+  Widget buildIconFavorite(bool statusFavorite) {
     Widget buildContent;
     if (_isLoadingFavorite) {
       buildContent = const LoadingButton();
-    } else if (_statusFavorite) {
+    } else if (statusFavorite) {
       buildContent = const Icon(Icons.favorite, color: Colors.red);
     } else {
       buildContent = const Icon(Icons.favorite_outline);
@@ -95,12 +84,15 @@ class _ActionWidgetState extends State<ActionWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Event event = context.watch<EventProvider>().getEventById(widget.eventId);
+    bool statusFavorite = bool.parse(event.favourite.toString());
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         IconButton(
-          onPressed: _statusFavorite ? _onPressUnFavorite : _onPressFavorite,
-          icon: buildIconFavorite(),
+          onPressed: statusFavorite ? _onPressUnFavorite : _onPressFavorite,
+          icon: buildIconFavorite(statusFavorite),
           color: widget.iconColor!,
         ),
         IconButton(

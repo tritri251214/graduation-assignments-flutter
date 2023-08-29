@@ -5,7 +5,6 @@ import 'package:graduation_assignments_flutter/common/colors.dart';
 import 'package:graduation_assignments_flutter/common/dimensions.dart';
 import 'package:graduation_assignments_flutter/common/storage.dart';
 import 'package:graduation_assignments_flutter/utils/screen_size.dart';
-import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:graduation_assignments_flutter/widgets/null_text.dart';
 
@@ -19,7 +18,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool _switchCopyEvent = false;
+  bool _switchCopyEvent = true;
   bool _isEditName = false;
   late TextEditingController _controller;
   final AppStorage storage = Get.put(AppStorage());
@@ -37,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
-  Future<void> _onSubmitTextName(String text) async {
+  void _onSubmitTextName(String text) {
     storage.setProfileName(text);
     setState(() {
       _isEditName = false;
@@ -45,7 +44,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _onLogout() {
-    showNeedImplement(context);
+    storage.clearAll();
+    setState(() {
+      _controller.text = '';
+    });
   }
 
   @override
@@ -213,7 +215,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: OutlinedButton(
                         onPressed: _onLogout,
                         style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                          shape:
+                              MaterialStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: AppDimensions.borderButtonRadius,
                           )),
                           textStyle: const MaterialStatePropertyAll(
