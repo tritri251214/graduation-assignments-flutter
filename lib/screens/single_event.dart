@@ -217,7 +217,7 @@ class _SingleEventState extends State<SingleEvent> {
                   SizedBox(
                     width: double.infinity,
                     height: double.infinity,
-                    child: LoadImage(imageUrl: _event.image),
+                    child: LoadImage(imageUrl: _event.image, borderRadius: BorderRadius.zero),
                   ),
                   Container(
                     padding: const EdgeInsets.all(14),
@@ -239,29 +239,6 @@ class _SingleEventState extends State<SingleEvent> {
                 ],
               ),
             ),
-            // : Container(
-            //     padding: const EdgeInsets.all(14),
-            //     height: double.infinity,
-            //     alignment: Alignment.bottomCenter,
-            //     decoration: BoxDecoration(
-            //       image: DecorationImage(
-            //         image: NetworkImage(_event.image),
-            //         fit: BoxFit.cover,
-            //       ),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         IconButton(
-            //           onPressed: () => widget.router.goBack(context),
-            //           icon: const Icon(Icons.arrow_back_ios),
-            //         ),
-            //         SizedBox(
-            //           child: ActionWidget(eventId: _event.id!),
-            //         )
-            //       ],
-            //     ),
-            //   ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),

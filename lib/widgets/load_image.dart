@@ -5,9 +5,10 @@ import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 
 class LoadImage extends StatelessWidget {
-  const LoadImage({super.key, required this.imageUrl});
+  const LoadImage({super.key, required this.imageUrl, this.borderRadius});
 
   final String imageUrl;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class LoadImage extends StatelessWidget {
       errorWidget: (_, __, ___) => Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          borderRadius: AppDimensions.borderButtonRadius,
+          borderRadius: borderRadius ?? AppDimensions.borderButtonRadius,
           border: Border.all(color: AppColors.dangerColor),
           color: AppColors.dangerColor,
         ),
