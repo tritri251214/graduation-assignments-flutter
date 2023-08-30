@@ -4,6 +4,7 @@ import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:graduation_assignments_flutter/widgets/home/home_widget.dart';
+import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -16,7 +17,6 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  List<Event> _favouriteData = [];
   bool _isLoading = false;
   late EventProvider _eventProvider;
 
@@ -34,9 +34,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
     try {
       await _eventProvider.getFavouritesEvent();
-      setState(() {
-        _favouriteData = _eventProvider.favouriteEventData;
-      });
     } catch (error) {
       // todo
     } finally {
@@ -53,9 +50,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
     try {
       await _eventProvider.refreshFavourites();
-      setState(() {
-        _favouriteData = _eventProvider.favouriteEventData;
-      });
     } catch (error) {
       // todo
     } finally {
@@ -81,6 +75,25 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Event> favouriteData = context.watch<EventProvider>().favouriteEventData;
+
+    Widget buildContent;
+    if (!_isLoading && favouriteData.isEmpty) {
+      buildContent = buildEmpty();
+    } else {
+      buildContent = SingleChildScrollView(
+        padding: const EdgeInsets.all(14.0),
+        physics: favouriteData.isEmpty
+            ? const NeverScrollableScrollPhysics()
+            : const ScrollPhysics(),
+        child: ListEventsWidget(
+          loading: _isLoading,
+          eventData: favouriteData,
+          displayLatest: false,
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -93,9 +106,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             SizedBox(
               width: 26,
               height: 26,
-              child: Badge.count(
-                count: _favouriteData.length,
-                textStyle: const TextStyle(fontSize: 20),
+              child: _isLoading ? const LoadingText(width: double.maxFinite, height: double.maxFinite,) : Badge.count(
+                count: favouriteData.length,
+                textStyle: const TextStyle(fontSize: 16),
                 backgroundColor: AppColors.primaryColor,
               ),
             )
@@ -107,19 +120,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               onPressed: _onRefresh, icon: const Icon(Icons.refresh_outlined))
         ],
       ),
-      body: !_isLoading && _favouriteData.isEmpty
-          ? buildEmpty()
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(14.0),
-              physics: _favouriteData.isEmpty
-                  ? const NeverScrollableScrollPhysics()
-                  : const ScrollPhysics(),
-              child: ListEventsWidget(
-                loading: _isLoading,
-                eventData: _favouriteData,
-                displayLatest: false,
-              ),
-            ),
+      body: buildContent,
       bottomNavigationBar:
           const BottomNavigationBarWidget(selectedMenu: Menu.favorites),
     );

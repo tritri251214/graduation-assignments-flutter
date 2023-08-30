@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/list_events.dart';
 import 'package:provider/provider.dart';
 
@@ -76,8 +77,26 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
     _onSearch(_controller.text);
   }
 
+  Widget buildEmpty() {
+    return const EmptyWidget(
+        title: 'No event yes',
+        description: 'Make sure you have added event\'s in this section');
+  }
+
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+
+    Widget buildContent;
+    if (!_isLoading && _searchData.isEmpty) {
+      buildContent = buildEmpty();
+    } else {
+      buildContent = SingleChildScrollView(
+        padding: const EdgeInsets.all(14.0),
+        child: ListEventsWidget(loading: _isLoading, eventData: _searchData, displayLatest: false),
+      );
+    }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120),
@@ -136,11 +155,7 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
             )),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(14.0),
-          child: ListEventsWidget(
-              loading: _isLoading, eventData: _searchData, displayLatest: false),
-        ),
+        child: buildContent,
       ),
       bottomNavigationBar:
           const BottomNavigationBarWidget(selectedMenu: Menu.search),

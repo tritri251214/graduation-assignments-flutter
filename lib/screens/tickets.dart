@@ -3,6 +3,7 @@ import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/ticket.dart';
 import 'package:graduation_assignments_flutter/providers/providers.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/list_past_tickets.dart';
 import 'package:graduation_assignments_flutter/widgets/list_tickets.dart';
 import 'package:provider/provider.dart';
@@ -58,8 +59,37 @@ class _TicketScreenState extends State<TicketScreen>
     }
   }
 
+  Widget buildEmpty() {
+    return const EmptyWidget(
+        title: 'No ticket yes',
+        description: 'Make sure you have added ticket\'s in this section');
+  }
+
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+
+    Widget buildUpcommingTab;
+    if (!_isLoading && _ticketData.isEmpty) {
+      buildUpcommingTab = buildEmpty();
+    } else {
+      buildUpcommingTab = SingleChildScrollView(
+        padding: const EdgeInsets.all(14.0),
+        child: ListTicketsTab(loading: _isLoading, ticketData: _ticketData),
+      );
+    }
+
+    Widget buildPastTab;
+    if (!_isLoading && _groupTickets.isEmpty) {
+      buildPastTab = buildEmpty();
+    } else {
+      buildPastTab = SingleChildScrollView(
+        padding: const EdgeInsets.all(14.0),
+        child: ListPastTicketsTab(
+            loading: _isLoading, groupTickets: _groupTickets),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
@@ -98,15 +128,8 @@ class _TicketScreenState extends State<TicketScreen>
         controller: _tabController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(14.0),
-            child: ListTicketsTab(loading: _isLoading, ticketData: _ticketData),
-          ),
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(14.0),
-            child: ListPastTicketsTab(
-                loading: _isLoading, groupTickets: _groupTickets),
-          ),
+          buildUpcommingTab,
+          buildPastTab,
         ],
       ),
       bottomNavigationBar:

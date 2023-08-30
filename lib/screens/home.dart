@@ -4,6 +4,7 @@ import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/home/home_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -54,9 +55,25 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Widget buildEmpty() {
+    return const EmptyWidget(
+        title: 'No event yes',
+        description: 'Make sure you have added event\'s in this section');
+  }
+
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+
     final List<Event> eventData = context.watch<EventProvider>().eventData;
+
+    Widget buildListEventContent;
+    if (!_isLoading && eventData.isEmpty) {
+      buildListEventContent = buildEmpty();
+    } else {
+      buildListEventContent = ListEventsWidget(
+          loading: _isLoading, eventData: eventData, displayLatest: false);
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -75,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               const LatestEventWidget(),
               const SizedBox(height: 16),
-              ListEventsWidget(loading: _isLoading, eventData: eventData),
+              buildListEventContent,
             ],
           ),
         ),

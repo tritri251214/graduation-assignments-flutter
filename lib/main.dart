@@ -26,6 +26,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+
     return MaterialApp(
       title: AppStrings.appName,
       theme: ThemeData(

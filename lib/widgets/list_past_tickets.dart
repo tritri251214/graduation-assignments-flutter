@@ -55,7 +55,7 @@ class _ListTicketsTabState extends State<ListPastTicketsTab> {
     if (widget.loading) {
       return const LoadingListEvent();
     } else if (widget.groupTickets.isEmpty) {
-      return const EmptyWidget();
+      return const EmptyWidget(title: 'No ticket yes', description: 'Make sure you have added ticket\'s in this section');
     } else {
       final children = <Widget>[];
       for (var group in widget.groupTickets.entries) {

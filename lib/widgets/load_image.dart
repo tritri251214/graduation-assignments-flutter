@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
-import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 
 class LoadImage extends StatelessWidget {
@@ -12,6 +11,8 @@ class LoadImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+
     return CachedNetworkImage(
       imageUrl: imageUrl,
       imageBuilder: (_, imageProvider) => Container(
@@ -31,7 +32,7 @@ class LoadImage extends StatelessWidget {
           border: Border.all(color: AppColors.dangerColor),
           color: AppColors.dangerColor,
         ),
-        child: const EmptyWidget(),
+        child: const Image(image: AssetImage('assets/images/empty_data_icon.png')),
       ),
     );
   }

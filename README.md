@@ -25,19 +25,22 @@ run command: json-server db.json --delay=1000
 
 ||||
 |-------------------------|-------------------------|-------------------------|
-|![SplashScreen](/docs/ios/SplashScreen.png "SplashScreen")|![Home](/docs/ios/Home.png "Home")|![Favourites](/docs/ios/Favourites.png "Favourites")|
-|![DatePicker](/docs/ios/DatePicker.png "DatePicker")|![TimePicker](/docs/ios/TimePicker.png "TimePicker")|![NewEvent](/docs/ios/NewEvent.png "NewEvent")|
-|![UpcommingTicket](/docs/ios/UpcommingTicket.png "UpcommingTicket")|![PastTicket](/docs/ios/PastTicket.png "PastTicket")|![Profile](/docs/ios/Profile.png "Profile")|
-|![ProfileEdit](/docs/ios/ProfileEdit.png "ProfileEdit")|![TicketsLoading](/docs/ios/TicketsLoading.png "TicketsLoading")|![EventValidation](/docs/ios/EventValidation.png "EventValidation")|
-|![Event detail](/docs/ios/EventDetail.png "Event detail")|||
+|![1](/docs/android/1.png "1")|![2](/docs/android/2.png "2")|![3](/docs/android/3.png "3"))|
+|![4](/docs/android/4.png "4")|![5](/docs/android/5.png "5")|![6](/docs/android/6.png "6"))|
+|![7](/docs/android/7.png "7")|![8](/docs/android/8.png "8")|![9](/docs/android/9.png "9"))|
+|![10](/docs/android/10.png "10")|![11](/docs/android/11.png "11")|![12](/docs/android/12.png "12"))|
+|![13](/docs/android/13.png "13")|![14](/docs/android/14.png "14")|![15](/docs/android/15.png "15"))|
+|![16](/docs/android/16.png "16")|![17](/docs/android/17.png "17")|![18](/docs/android/18.png "18"))|
+|![19](/docs/android/19.png "19")|||
 
 ## Images Android simulator
 
 ||||
 |-------------------------|-------------------------|-------------------------|
-|![SplashScreen](/docs/android/SplashScreen.png "SplashScreen")|![Home](/docs/android/Home.png "Home")|![HomeLoading](/docs/android/HomeLoading.png "HomeLoading")|
-|![FavouriteLoading](/docs/android/FavouriteLoading.png "FavouriteLoading")|![NewEvent](/docs/android/NewEvent.png "NewEvent")|![UpcommingEvent](/docs/android/UpcommingEvent.png "UpcommingEvent")|
-|![Profile](/docs/android/Profile.png "Profile")|![ProfileEdit](/docs/android/ProfileEdit.png "ProfileEdit")|![SearchResult](/docs/android/SearchResult.png "SearchResult")|
-|![SearchResult2](/docs/android/SearchResult2.png "SearchResult2")|![FavouriteEmpty](/docs/android/FavouriteEmpty.png "FavouriteEmpty")|![HomeEmpty](/docs/android/HomeEmpty.png "HomeEmpty")|
-|![PastEmpty](/docs/android/PastEmpty.png "PastEmpty")|![SearchEmpty](/docs/android/SearchEmpty.png "SearchEmpty")|![Event detail](/docs/android/EventDetail.png "Event detail")|
-|![UpcommingEmpty](/docs/android/UpcommingEmpty.png "UpcommingEmpty")|![SingleEventImageError](/docs/android/SingleEventImageError.png "SingleEventImageError")||
+|![1](/docs/android/1.png "1")|![2](/docs/android/2.png "2")|![3](/docs/android/3.png "3"))|
+|![4](/docs/android/4.png "4")|![5](/docs/android/5.png "5")|![6](/docs/android/6.png "6"))|
+|![7](/docs/android/7.png "7")|![8](/docs/android/8.png "8")|![9](/docs/android/9.png "9"))|
+|![10](/docs/android/10.png "10")|![11](/docs/android/11.png "11")|![12](/docs/android/12.png "12"))|
+|![13](/docs/android/13.png "13")|![14](/docs/android/14.png "14")|![15](/docs/android/15.png "15"))|
+|![16](/docs/android/16.png "16")|![17](/docs/android/17.png "17")|![18](/docs/android/18.png "18"))|
+|![19](/docs/android/19.png "19")|||

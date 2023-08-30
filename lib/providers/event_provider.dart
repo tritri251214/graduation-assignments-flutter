@@ -16,11 +16,6 @@ class EventProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  set favouriteEventData(List<Event> data) {
-    _favouriteEventData = data;
-    notifyListeners();
-  }
-
   Future<void> getListEvent() async {
     try {
       final List<dynamic> response = await get('events?_sort=id&_order=desc');
@@ -209,7 +204,8 @@ class EventProvider with ChangeNotifier {
           Event.fromJson(item),
         );
       }
-      favouriteEventData = loadedEventData;
+      _favouriteEventData = loadedEventData;
+      notifyListeners();
       return;
     } catch (error) {
       // ignore: avoid_print

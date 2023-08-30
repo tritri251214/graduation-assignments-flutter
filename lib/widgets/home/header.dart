@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
-import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:graduation_assignments_flutter/widgets/null_text.dart';
 
 class HeaderWidget extends StatefulWidget {
@@ -18,7 +17,6 @@ class HeaderWidget extends StatefulWidget {
 
 class _HeaderWidgetState extends State<HeaderWidget> {
   Placemark _location = Placemark();
-  bool _isLoading = false;
 
   @override
   void initState() {
@@ -27,10 +25,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   }
 
   Future<void> _reload() async {
-    setState(() {
-      _isLoading = true;
-    });
-
     try {
       bool isCallDeterminePosition = await beforeDeterminePosition();
       if (isCallDeterminePosition) {
@@ -44,10 +38,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     } catch (error) {
       // ignore: use_build_context_synchronously
       showSnackBar(context, Text(error.toString()), TypeSnackBar.warning);
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 
@@ -73,13 +63,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               children: [
                 const Icon(Icons.location_on_outlined, size: 16),
                 const SizedBox(width: 5),
-                if (_isLoading)
-                  const LoadingText()
-                else
-                  NullText(
-                      text: _location.country,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16)),
+                NullText(text: _location.country, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ],
             ),
           ],
