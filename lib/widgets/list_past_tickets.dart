@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/ticket.dart';
 import 'package:graduation_assignments_flutter/router.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/list_tickets.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 
@@ -37,7 +38,11 @@ class _ListTicketsTabState extends State<ListPastTicketsTab> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(titleGroup, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.placeholderText)),
+        Text(titleGroup,
+            style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.placeholderText)),
         const SizedBox(height: 10),
         ListTicketsTab(loading: widget.loading, ticketData: groupTickets),
         const SizedBox(height: 10),
@@ -47,14 +52,16 @@ class _ListTicketsTabState extends State<ListPastTicketsTab> {
 
   @override
   Widget build(BuildContext context) {
-    final children = <Widget>[];
-    for (var group in widget.groupTickets.entries) {
-      children.add(buildGroupTicket(group.value, group.key));
+    if (widget.loading) {
+      return const LoadingListEvent();
+    } else if (widget.groupTickets.isEmpty) {
+      return const EmptyWidget();
+    } else {
+      final children = <Widget>[];
+      for (var group in widget.groupTickets.entries) {
+        children.add(buildGroupTicket(group.value, group.key));
+      }
+      return Column(children: children);
     }
-    return widget.loading
-        ? const LoadingListEvent()
-        : Column(
-            children: children,
-          );
   }
 }

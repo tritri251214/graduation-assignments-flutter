@@ -6,6 +6,7 @@ import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/utils/screen_size.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/action.dart';
+import 'package:graduation_assignments_flutter/widgets/load_image.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:graduation_assignments_flutter/widgets/null_text.dart';
 import 'package:provider/provider.dart';
@@ -208,29 +209,59 @@ class _SingleEventState extends State<SingleEvent> {
         preferredSize: const Size.fromHeight(200),
         child: _isLoading
             ? const LoadingImage()
-            : Container(
-                padding: const EdgeInsets.all(14),
-                height: double.infinity,
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(_event.image),
-                    fit: BoxFit.cover,
+            : SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: LoadImage(imageUrl: _event.image),
                   ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () => widget.router.goBack(context),
-                      icon: const Icon(Icons.arrow_back_ios),
+                  Container(
+                    padding: const EdgeInsets.all(14),
+                    height: double.infinity,
+                    alignment: Alignment.bottomCenter,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () => widget.router.goBack(context),
+                          icon: const Icon(Icons.arrow_back_ios),
+                        ),
+                        SizedBox(
+                          child: ActionWidget(eventId: _event.id!),
+                        )
+                      ],
                     ),
-                    SizedBox(
-                      child: ActionWidget(eventId: _event.id!),
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
+            ),
+            // : Container(
+            //     padding: const EdgeInsets.all(14),
+            //     height: double.infinity,
+            //     alignment: Alignment.bottomCenter,
+            //     decoration: BoxDecoration(
+            //       image: DecorationImage(
+            //         image: NetworkImage(_event.image),
+            //         fit: BoxFit.cover,
+            //       ),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         IconButton(
+            //           onPressed: () => widget.router.goBack(context),
+            //           icon: const Icon(Icons.arrow_back_ios),
+            //         ),
+            //         SizedBox(
+            //           child: ActionWidget(eventId: _event.id!),
+            //         )
+            //       ],
+            //     ),
+            //   ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),

@@ -51,9 +51,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
   Widget buildRoot(BuildContext context) {
     Event? latestEvent = context.watch<EventProvider>().latestEvent;
     Widget buildContent;
-    if (_isLoading) {
-      buildContent = const LoadingLatestEvent();
-    } else if (latestEvent == null && latestEvent!.id == null) {
+    if (latestEvent == null) {
       buildContent = Card(
         margin: const EdgeInsets.all(0),
         color: AppColors.backgroundCard,
@@ -70,7 +68,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                   height: 150.0,
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    borderRadius: AppDimensions.borderButtonRadius,
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
                     border: Border.all(color: AppColors.dangerColor),
                     color: AppColors.dangerColor,
                   ),

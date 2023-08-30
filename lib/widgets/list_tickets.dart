@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/ticket.dart';
 import 'package:graduation_assignments_flutter/router.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/load_image.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 
@@ -60,7 +61,8 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                         children: [
                           const Expanded(
                             flex: 1,
-                            child: Icon(Icons.bookmark, color: AppColors.primaryColor, size: 40),
+                            child: Icon(Icons.bookmark,
+                                color: AppColors.primaryColor, size: 40),
                           ),
                           Expanded(
                             flex: 3,
@@ -68,11 +70,12 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(ticket.title,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: false,
-                                  maxLines: 1,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 16)),
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16)),
                                 Text(ticket.getFormatTime()),
                               ],
                             ),
@@ -107,18 +110,20 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
 
   @override
   Widget build(BuildContext context) {
-    final children = <Widget>[];
-    for (var i = 0; i < widget.ticketData.length; i++) {
-      if (i == 0) {
-        children.add(buildTicket(widget.ticketData[i], true));
-      } else {
-        children.add(buildTicket(widget.ticketData[i], false));
+    if (widget.loading) {
+      return const LoadingListEvent();
+    } else if (widget.ticketData.isEmpty) {
+      return const EmptyWidget();
+    } else {
+      final children = <Widget>[];
+      for (var i = 0; i < widget.ticketData.length; i++) {
+        if (i == 0) {
+          children.add(buildTicket(widget.ticketData[i], true));
+        } else {
+          children.add(buildTicket(widget.ticketData[i], false));
+        }
       }
+      return Column(children: children);
     }
-    return widget.loading
-        ? const LoadingListEvent()
-        : Column(
-            children: children,
-          );
   }
 }

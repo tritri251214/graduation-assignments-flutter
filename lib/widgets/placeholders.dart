@@ -77,7 +77,6 @@ class CardPlaceholder extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: AppDimensions.cardBorderRadius,
       ),
-      elevation: 2.0,
       child: Column(
         children: [
           Container(

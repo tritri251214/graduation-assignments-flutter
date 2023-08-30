@@ -3,6 +3,7 @@ import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/router.dart';
 import 'package:graduation_assignments_flutter/widgets/action.dart';
+import 'package:graduation_assignments_flutter/widgets/empty.dart';
 import 'package:graduation_assignments_flutter/widgets/load_image.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:graduation_assignments_flutter/widgets/location.dart';
@@ -89,17 +90,19 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[];
-    for (var i = 0; i < widget.eventData.length; i++) {
-      if (i == 0) {
-        children.add(buildEvent(widget.eventData[i], true));
-      } else {
-        children.add(buildEvent(widget.eventData[i], false));
+    if (widget.loading) {
+      return const LoadingListEvent();
+    } else if (widget.eventData.isEmpty) {
+      return const EmptyWidget();
+    } else {
+      for (var i = 0; i < widget.eventData.length; i++) {
+        if (i == 0) {
+          children.add(buildEvent(widget.eventData[i], true));
+        } else {
+          children.add(buildEvent(widget.eventData[i], false));
+        }
       }
+      return Column(children: children);
     }
-    return widget.loading
-        ? const LoadingListEvent()
-        : Column(
-            children: children,
-          );
   }
 }
