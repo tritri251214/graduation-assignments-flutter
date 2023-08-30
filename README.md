@@ -25,18 +25,19 @@ run command: json-server db.json --delay=1000
 
 ||||
 |-------------------------|-------------------------|-------------------------|
-|![Home](/docs/ios/Home.png "Home")|![Event detail](/docs/ios/EventDetail.png "Event detail")|![Favourites](/docs/ios/Favourites.png "Favourites")|
+|![SplashScreen](/docs/ios/SplashScreen.png "SplashScreen")|![Home](/docs/ios/Home.png "Home")|![Favourites](/docs/ios/Favourites.png "Favourites")|
 |![DatePicker](/docs/ios/DatePicker.png "DatePicker")|![TimePicker](/docs/ios/TimePicker.png "TimePicker")|![NewEvent](/docs/ios/NewEvent.png "NewEvent")|
 |![UpcommingTicket](/docs/ios/UpcommingTicket.png "UpcommingTicket")|![PastTicket](/docs/ios/PastTicket.png "PastTicket")|![Profile](/docs/ios/Profile.png "Profile")|
-|![ProfileEdit](/docs/ios/ProfileEdit.png "ProfileEdit")|![TicketsLoading](/docs/ios/TicketsLoading.png "TicketsLoading")||
+|![ProfileEdit](/docs/ios/ProfileEdit.png "ProfileEdit")|![TicketsLoading](/docs/ios/TicketsLoading.png "TicketsLoading")|![EventValidation](/docs/ios/EventValidation.png "EventValidation")|
+|![Event detail](/docs/ios/EventDetail.png "Event detail")|||
 
 ## Images Android simulator
 
 ||||
 |-------------------------|-------------------------|-------------------------|
-|![HomeLoading](/docs/android/HomeLoading.png "HomeLoading")|![Home](/docs/android/Home.png "Home")|![Event detail](/docs/android/EventDetail.png "Event detail")|
+|![SplashScreen](/docs/android/SplashScreen.png "SplashScreen")|![Home](/docs/android/Home.png "Home")|![HomeLoading](/docs/android/HomeLoading.png "HomeLoading")|
 |![FavouriteLoading](/docs/android/FavouriteLoading.png "FavouriteLoading")|![NewEvent](/docs/android/NewEvent.png "NewEvent")|![UpcommingEvent](/docs/android/UpcommingEvent.png "UpcommingEvent")|
 |![Profile](/docs/android/Profile.png "Profile")|![ProfileEdit](/docs/android/ProfileEdit.png "ProfileEdit")|![SearchResult](/docs/android/SearchResult.png "SearchResult")|
 |![SearchResult2](/docs/android/SearchResult2.png "SearchResult2")|![FavouriteEmpty](/docs/android/FavouriteEmpty.png "FavouriteEmpty")|![HomeEmpty](/docs/android/HomeEmpty.png "HomeEmpty")|
-|![PastEmpty](/docs/android/PastEmpty.png "PastEmpty")|![SearchEmpty](/docs/android/SearchEmpty.png "SearchEmpty")|![SplashScreen](/docs/android/SplashScreen.png "SplashScreen")|
+|![PastEmpty](/docs/android/PastEmpty.png "PastEmpty")|![SearchEmpty](/docs/android/SearchEmpty.png "SearchEmpty")|![Event detail](/docs/android/EventDetail.png "Event detail")|
 |![UpcommingEmpty](/docs/android/UpcommingEmpty.png "UpcommingEmpty")|![SingleEventImageError](/docs/android/SingleEventImageError.png "SingleEventImageError")||
