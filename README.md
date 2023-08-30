@@ -39,4 +39,4 @@ run command: json-server db.json --delay=1000
 |![Profile](/docs/android/Profile.png "Profile")|![ProfileEdit](/docs/android/ProfileEdit.png "ProfileEdit")|![SearchResult](/docs/android/SearchResult.png "SearchResult")|
 |![SearchResult2](/docs/android/SearchResult2.png "SearchResult2")|![FavouriteEmpty](/docs/android/FavouriteEmpty.png "FavouriteEmpty")|![HomeEmpty](/docs/android/HomeEmpty.png "HomeEmpty")|
 |![PastEmpty](/docs/android/PastEmpty.png "PastEmpty")|![SearchEmpty](/docs/android/SearchEmpty.png "SearchEmpty")|![SplashScreen](/docs/android/SplashScreen.png "SplashScreen")|
-|![UpcommingEmpty](/docs/android/UpcommingEmpty.png "UpcommingEmpty")|||
+|![UpcommingEmpty](/docs/android/UpcommingEmpty.png "UpcommingEmpty")|![SingleEventImageError](/docs/android/SingleEventImageError.png "SingleEventImageError")||
