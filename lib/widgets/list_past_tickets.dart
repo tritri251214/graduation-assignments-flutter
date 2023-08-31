@@ -40,8 +40,8 @@ class _ListTicketsTabState extends State<ListPastTicketsTab> {
       children: [
         Text(titleGroup,
             style: const TextStyle(
+                fontFamily: AppStrings.rootFont,
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
                 color: AppColors.placeholderText)),
         const SizedBox(height: 10),
         ListTicketsTab(loading: widget.loading, ticketData: groupTickets),

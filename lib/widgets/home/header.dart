@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -61,9 +62,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             const SizedBox(height: 5),
             Row(
               children: [
-                const Icon(Icons.location_on_outlined, size: 16),
+                const Icon(CupertinoIcons.location, size: 16),
                 const SizedBox(width: 5),
-                NullText(text: _location.country, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                NullText(text: _location.country, style: const TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
               ],
             ),
           ],
@@ -72,7 +73,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
           padding: const EdgeInsets.only(top: 10),
           child: FilledButton(
               onPressed: () => widget.router.gotoNewEvent(context),
-              child: const Text('New Event')),
+              child: const Text('New Event', style: TextStyle(fontFamily: AppStrings.rootFont))),
         ),
       ],
     );

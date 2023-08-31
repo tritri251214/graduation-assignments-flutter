@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/router.dart';
@@ -48,11 +49,11 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
     }
   }
 
-  BottomNavigationBarItem buildItem(IconData iconData, Menu label) {
+  BottomNavigationBarItem buildItem(IconData iconData, Menu label, IconData activeIcon) {
     return BottomNavigationBarItem(
       activeIcon: Icon(
-        iconData,
-        color: Colors.black,
+        activeIcon,
+        color: AppColors.primaryColor,
       ),
       icon: Icon(
         iconData,
@@ -90,11 +91,11 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
       showSelectedLabels: false,
       showUnselectedLabels: false,
       items: <BottomNavigationBarItem>[
-        buildItem(Icons.home_outlined, Menu.home),
-        buildItem(Icons.search_outlined, Menu.search),
-        buildItem(Icons.local_offer_outlined, Menu.tickets),
-        buildItem(Icons.favorite_border_outlined, Menu.favorites),
-        buildItem(Icons.person_outline, Menu.profile),
+        buildItem(CupertinoIcons.house_alt, Menu.home, CupertinoIcons.house_alt_fill),
+        buildItem(CupertinoIcons.search, Menu.search, CupertinoIcons.search),
+        buildItem(CupertinoIcons.tickets, Menu.tickets, CupertinoIcons.tickets_fill),
+        buildItem(CupertinoIcons.heart, Menu.favorites, CupertinoIcons.heart_fill),
+        buildItem(CupertinoIcons.person, Menu.profile, CupertinoIcons.person_fill),
       ],
       currentIndex: selectedMenu,
       selectedItemColor: Colors.black,

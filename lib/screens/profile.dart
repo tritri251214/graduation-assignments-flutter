@@ -1,9 +1,11 @@
 // ignore: depend_on_referenced_packages
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/colors.dart';
 import 'package:graduation_assignments_flutter/common/dimensions.dart';
 import 'package:graduation_assignments_flutter/common/storage.dart';
+import 'package:graduation_assignments_flutter/common/strings.dart';
 import 'package:graduation_assignments_flutter/utils/screen_size.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:graduation_assignments_flutter/widgets/null_text.dart';
@@ -87,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   onPressed: () =>
                                       _onSubmitTextName(_controller.text),
                                   icon:
-                                      const Icon(Icons.send_outlined, size: 16),
+                                      const Icon(CupertinoIcons.square_arrow_right, size: 16),
                                 ),
                                 hintText: 'Input name',
                               ),
@@ -99,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               NullText(
                                   text: _controller.text,
                                   style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: AppStrings.rootFont,
                                       fontSize: 18)),
                               const SizedBox(width: 5),
                               IconButton(
@@ -108,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       _isEditName = true;
                                     });
                                   },
-                                  icon: const Icon(Icons.edit_outlined,
+                                  icon: const Icon(CupertinoIcons.pencil_ellipsis_rectangle,
                                       size: 16)),
                             ],
                           ),
@@ -121,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.all(14.0),
                 child: Text('Settings',
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                        TextStyle(fontFamily: AppStrings.rootFont, fontSize: 18)),
               ),
               Container(
                 width: double.infinity,
@@ -162,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Manage Events'),
-                    Icon(Icons.chevron_right_outlined),
+                    Icon(CupertinoIcons.chevron_right),
                   ],
                 ),
               ),
@@ -174,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Manage Log in options'),
-                    Icon(Icons.chevron_right_outlined),
+                    Icon(CupertinoIcons.chevron_right),
                   ],
                 ),
               ),
@@ -186,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Account Settings'),
-                    Icon(Icons.chevron_right_outlined),
+                    Icon(CupertinoIcons.chevron_right),
                   ],
                 ),
               ),
@@ -221,8 +223,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           )),
                           textStyle: const MaterialStatePropertyAll(
                             TextStyle(
+                                fontFamily: AppStrings.rootFont,
                                 color: AppColors.placeholderText,
-                                fontWeight: FontWeight.bold,
                                 fontSize: 16),
                           ),
                         ),

@@ -14,7 +14,7 @@ class NewBadgeWidget extends StatelessWidget {
         color: AppColors.primaryColor,
       ),
       child: const Center(
-        child: Text('New', style: TextStyle(color: AppColors.white)),
+        child: Text('New', style: TextStyle(fontFamily: AppStrings.rootFont, color: AppColors.white)),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_assignments_flutter/common/strings.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
@@ -33,6 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
     _isLoading = false;
 
@@ -63,8 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
-
     final List<Event> eventData = context.watch<EventProvider>().eventData;
 
     Widget buildListEventContent;
@@ -88,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const HeaderWidget(),
               const SizedBox(height: 16),
-              const Text('Popular in Viet Nam', style: TextStyle(fontSize: 16)),
+              const Text('Popular in Viet Nam', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
               const SizedBox(height: 16),
               const LatestEventWidget(),
               const SizedBox(height: 16),

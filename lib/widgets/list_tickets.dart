@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/ticket.dart';
@@ -61,7 +62,7 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                         children: [
                           const Expanded(
                             flex: 1,
-                            child: Icon(Icons.bookmark,
+                            child: Icon(CupertinoIcons.bookmark_fill,
                                 color: AppColors.primaryColor, size: 40),
                           ),
                           Expanded(
@@ -74,7 +75,7 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                                     softWrap: false,
                                     maxLines: 1,
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        fontFamily: AppStrings.rootFont,
                                         fontSize: 16)),
                                 Text(ticket.getFormatTime()),
                               ],

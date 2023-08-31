@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/colors.dart';
+import 'package:graduation_assignments_flutter/common/strings.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
@@ -65,9 +67,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.favorite, color: AppColors.backgroundCard, size: 150),
+            Icon(CupertinoIcons.heart_fill, color: AppColors.backgroundCard, size: 150),
             Text('No favourites yes',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+                style: TextStyle(fontFamily: AppStrings.rootFont)),
             Text('Make sure you have added event’s in this section'),
           ]),
     );
@@ -100,8 +102,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            const Text('Favourites',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const Text('Favourites', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 24)),
             const SizedBox(width: 5),
             SizedBox(
               width: 26,
@@ -117,7 +118,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-              onPressed: _onRefresh, icon: const Icon(Icons.refresh_outlined))
+              onPressed: _onRefresh, icon: const Icon(CupertinoIcons.refresh))
         ],
       ),
       body: buildContent,

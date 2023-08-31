@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_assignments_flutter/common/strings.dart';
 import 'package:graduation_assignments_flutter/utils/screen_size.dart';
 
 class EmptyWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class EmptyWidget extends StatelessWidget {
           Image(
             image: const AssetImage('assets/images/empty_data_icon.png'),
             width: screenSize.width * 0.6),
-          Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(title, style: const TextStyle(fontFamily: AppStrings.rootFont)),
           Text(description),
         ],
       ),

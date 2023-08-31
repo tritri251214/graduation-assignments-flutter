@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
@@ -36,7 +37,7 @@ class _SingleEventState extends State<SingleEvent> {
   bool _isLoadingDelete = false;
   late EventProvider _eventProvider;
   static const textStyleGenerate =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+      TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16);
   late Size screenSize = getScreenSize(context);
   bool isLatestEvent = false;
 
@@ -108,14 +109,14 @@ class _SingleEventState extends State<SingleEvent> {
     if (_isLoadingDelete) {
       buildContent = const LoadingButton();
     } else {
-      buildContent = const Text('Delete Event');
+      buildContent = const Text('Delete Event', style: TextStyle(fontFamily: AppStrings.rootFont));
     }
     return buildContent;
   }
 
   Widget buildRoot() {
     Widget buildContent;
-    const styleTextButton = TextStyle(fontWeight: FontWeight.bold);
+    const styleTextButton = TextStyle(fontFamily: AppStrings.rootFont);
     if (_isLoading) {
       buildContent = const LoadingListEvent();
     } else {
@@ -125,7 +126,7 @@ class _SingleEventState extends State<SingleEvent> {
         children: [
           Text(_event.name,
               style:
-                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  const TextStyle(fontFamily: AppStrings.rootFont, fontSize: 24)),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +134,7 @@ class _SingleEventState extends State<SingleEvent> {
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 3),
-                child: Icon(Icons.calendar_today_outlined, size: 16),
+                child: Icon(CupertinoIcons.calendar, size: 16),
               ),
               const SizedBox(width: 10),
               Column(
@@ -166,7 +167,7 @@ class _SingleEventState extends State<SingleEvent> {
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 3),
-                child: Icon(Icons.location_on_outlined, size: 16),
+                child: Icon(CupertinoIcons.location, size: 16),
               ),
               const SizedBox(width: 10),
               Column(
@@ -228,7 +229,7 @@ class _SingleEventState extends State<SingleEvent> {
                       children: [
                         IconButton(
                           onPressed: () => widget.router.goBack(context),
-                          icon: const Icon(Icons.arrow_back_ios),
+                          icon: const Icon(CupertinoIcons.chevron_back),
                         ),
                         SizedBox(
                           child: ActionWidget(eventId: _event.id!),

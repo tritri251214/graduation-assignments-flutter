@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: AppStrings.appName,
       theme: ThemeData(
+        fontFamily: 'HelveticaNeue',
         useMaterial3: true,
         filledButtonTheme: const FilledButtonThemeData(
           style: ButtonStyle(

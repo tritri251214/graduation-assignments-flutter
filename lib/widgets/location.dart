@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class LocationWidget extends StatefulWidget {
   const LocationWidget({super.key, required this.text});
@@ -14,7 +14,7 @@ class _LocationState extends State<LocationWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.location_on_outlined, size: 16),
+        const Icon(CupertinoIcons.location, size: 16),
         const SizedBox(width: 5),
         Text(
           widget.text,

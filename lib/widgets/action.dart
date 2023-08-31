@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
@@ -75,9 +76,9 @@ class _ActionWidgetState extends State<ActionWidget> {
     if (_isLoadingFavorite) {
       buildContent = const LoadingButton();
     } else if (statusFavorite) {
-      buildContent = const Icon(Icons.favorite, color: Colors.red);
+      buildContent = const Icon(CupertinoIcons.heart_fill, color: Colors.red);
     } else {
-      buildContent = const Icon(Icons.favorite_outline);
+      buildContent = const Icon(CupertinoIcons.heart);
     }
     return buildContent;
   }
@@ -97,7 +98,7 @@ class _ActionWidgetState extends State<ActionWidget> {
         ),
         IconButton(
             onPressed: _onPressShare,
-            icon: const Icon(Icons.share_outlined),
+            icon: const Icon(CupertinoIcons.share),
             color: widget.iconColor!),
       ],
     );

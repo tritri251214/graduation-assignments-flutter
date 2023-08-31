@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
@@ -256,23 +257,23 @@ class _NewEventState extends State<NewEvent> {
     if (_isLoading) {
       buildContent = const LoadingButton();
     } else {
-      buildContent = const Text('Submit', style: TextStyle(fontSize: 16));
+      buildContent = const Text('Submit', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16));
     }
     return buildContent;
   }
 
   @override
   Widget build(BuildContext context) {
-    const labelStyle = TextStyle(fontWeight: FontWeight.bold);
+    const labelStyle = TextStyle(fontFamily: AppStrings.rootFont);
     const requiredStyle =
-        TextStyle(fontWeight: FontWeight.bold, color: AppColors.dangerColor);
+        TextStyle(fontFamily: AppStrings.rootFont, color: AppColors.dangerColor);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Event'),
+        title: const Text('New Event', style: TextStyle(fontFamily: AppStrings.rootFont)),
         leading: IconButton(
           onPressed: () => widget.router.goBack(context),
-          icon: const Icon(Icons.close_outlined),
+          icon: const Icon(CupertinoIcons.clear_thick),
         ),
       ),
       body: SafeArea(
@@ -361,7 +362,7 @@ class _NewEventState extends State<NewEvent> {
                           hintText: 'Time',
                           filled: true,
                           fillColor: AppColors.backgroundInput,
-                          suffixIcon: Icon(Icons.schedule_outlined),
+                          suffixIcon: Icon(CupertinoIcons.clock),
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -387,7 +388,7 @@ class _NewEventState extends State<NewEvent> {
                             hintText: 'Date',
                             filled: true,
                             fillColor: AppColors.backgroundInput,
-                            suffixIcon: Icon(Icons.calendar_today_outlined),
+                            suffixIcon: Icon(CupertinoIcons.calendar),
                           ),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -425,7 +426,7 @@ class _NewEventState extends State<NewEvent> {
                           hintText: 'Time',
                           filled: true,
                           fillColor: AppColors.backgroundInput,
-                          suffixIcon: Icon(Icons.schedule_outlined),
+                          suffixIcon: Icon(CupertinoIcons.clock),
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -451,7 +452,7 @@ class _NewEventState extends State<NewEvent> {
                             hintText: 'Date',
                             filled: true,
                             fillColor: AppColors.backgroundInput,
-                            suffixIcon: Icon(Icons.calendar_today_outlined),
+                            suffixIcon: Icon(CupertinoIcons.calendar),
                           ),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {

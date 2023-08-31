@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
@@ -93,7 +94,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                       SizedBox(height: 8),
                       Row(
                         children: [
-                          Icon(Icons.location_on_outlined, size: 16),
+                          Icon(CupertinoIcons.location, size: 16),
                           SizedBox(width: 5),
                           NullText(
                             text: '',
@@ -173,7 +174,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                           const SizedBox(height: 8),
                           Row(
                             children: [
-                              const Icon(Icons.location_on_outlined, size: 16),
+                              const Icon(CupertinoIcons.location, size: 16),
                               const SizedBox(width: 5),
                               NullText(
                                   text: latestEvent.location,

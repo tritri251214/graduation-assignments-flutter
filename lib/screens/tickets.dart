@@ -96,9 +96,9 @@ class _TicketScreenState extends State<TicketScreen>
         automaticallyImplyLeading: false,
         title: const Text('Tickets',
             style: TextStyle(
+                fontFamily: AppStrings.rootFont,
                 fontSize: 24,
-                color: AppColors.white,
-                fontWeight: FontWeight.bold)),
+                color: AppColors.white)),
         centerTitle: false,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -114,10 +114,10 @@ class _TicketScreenState extends State<TicketScreen>
               dividerColor: Colors.transparent,
               tabs: const [
                 Tab(
-                  child: Text('Upcomming', style: TextStyle(fontSize: 16)),
+                  child: Text('Upcomming', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
                 ),
                 Tab(
-                  child: Text('Past tickets', style: TextStyle(fontSize: 16)),
+                  child: Text('Past tickets', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
                 ),
               ],
             ),

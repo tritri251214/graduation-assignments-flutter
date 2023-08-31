@@ -27,7 +27,7 @@ class ListEventsWidget extends StatefulWidget {
 }
 
 class _ListEventsWidgetState extends State<ListEventsWidget> {
-  Widget buildEvent(Event event, bool? isLatest) {
+  Widget buildEvent(Event event, bool isLatest) {
     return Column(children: [
       InkWell(
         onTap: () {
@@ -38,7 +38,7 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
             SizedBox(
               width: 90,
               height: 90,
-              child: (widget.displayLatest && (isLatest != null && isLatest))
+              child: (widget.displayLatest && isLatest)
                   ? Stack(
                       alignment: const Alignment(1.3, -1.3),
                       children: [
@@ -69,7 +69,7 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
                   const SizedBox(height: 5),
                   Text(event.name,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontFamily: AppStrings.rootFont,
                           fontSize: 16,
                           color: Colors.black)),
                   const SizedBox(height: 16),

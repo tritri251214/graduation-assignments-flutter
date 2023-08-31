@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_assignments_flutter/common/strings.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
@@ -30,6 +32,12 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
     _onSearch('');
     super.initState();
     _controller = TextEditingController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
+    super.didChangeDependencies();
   }
 
   @override
@@ -85,8 +93,6 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(const AssetImage('assets/images/empty_data_icon.png'), context);
-
     Widget buildContent;
     if (!_isLoading && _searchData.isEmpty) {
       buildContent = buildEmpty();
@@ -115,7 +121,7 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
                       suffixIcon: IconButton(
                         padding: const EdgeInsets.all(0),
                         onPressed: () => _onSearch(_controller.text),
-                        icon: const Icon(Icons.search_outlined),
+                        icon: const Icon(CupertinoIcons.search),
                       ),
                       hintText: 'Search for event name',
                     ),
@@ -127,7 +133,7 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('${_searchData.length} Events',
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                          style: const TextStyle(fontFamily: AppStrings.rootFont)),
                       TextButton(
                         onPressed: _onPressedSorter,
                         style: const ButtonStyle(
@@ -142,8 +148,8 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
                             ),
                             Icon(
                                 _sorter == Sorter.asc
-                                    ? Icons.expand_more_outlined
-                                    : Icons.expand_less_outlined,
+                                    ? CupertinoIcons.chevron_down
+                                    : CupertinoIcons.chevron_up,
                                 size: 20)
                           ],
                         ),
