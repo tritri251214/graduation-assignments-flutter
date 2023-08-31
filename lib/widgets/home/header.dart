@@ -62,7 +62,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             const SizedBox(height: 5),
             Row(
               children: [
-                const Icon(CupertinoIcons.location, size: 16),
+                const Icon(CupertinoIcons.placemark, size: 16),
                 const SizedBox(width: 5),
                 NullText(text: _location.country, style: const TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
               ],

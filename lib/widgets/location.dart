@@ -14,7 +14,7 @@ class _LocationState extends State<LocationWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(CupertinoIcons.location, size: 16),
+        const Icon(CupertinoIcons.placemark, size: 16),
         const SizedBox(width: 5),
         Text(
           widget.text,

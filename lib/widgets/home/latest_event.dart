@@ -94,7 +94,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                       SizedBox(height: 8),
                       Row(
                         children: [
-                          Icon(CupertinoIcons.location, size: 16),
+                          Icon(CupertinoIcons.placemark, size: 16),
                           SizedBox(width: 5),
                           NullText(
                             text: '',
@@ -174,7 +174,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                           const SizedBox(height: 8),
                           Row(
                             children: [
-                              const Icon(CupertinoIcons.location, size: 16),
+                              const Icon(CupertinoIcons.placemark, size: 16),
                               const SizedBox(width: 5),
                               NullText(
                                   text: latestEvent.location,

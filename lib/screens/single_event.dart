@@ -167,7 +167,7 @@ class _SingleEventState extends State<SingleEvent> {
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 3),
-                child: Icon(CupertinoIcons.location, size: 16),
+                child: Icon(CupertinoIcons.placemark, size: 16),
               ),
               const SizedBox(width: 10),
               Column(
