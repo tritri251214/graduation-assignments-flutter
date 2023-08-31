@@ -147,6 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const Text('Copy Event to calendar'),
                     Switch.adaptive(
                       value: _switchCopyEvent,
+                      applyCupertinoTheme: true,
                       onChanged: (bool value) {
                         setState(() {
                           _switchCopyEvent = value;
@@ -228,7 +229,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontSize: 16),
                           ),
                         ),
-                        child: const Text('Logout'),
+                        child: const Text('Logout', style: TextStyle(color: AppColors.primaryColor)),
                       ),
                     ),
                   ),

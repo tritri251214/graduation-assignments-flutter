@@ -19,7 +19,13 @@ samples, guidance on mobile development, and a full API reference.
 
 cd to root folder
 
-run command: json-server db.json --delay=1000
+run command: *json-server db.json --delay=1000*
+
+![backend](/docs/backend.png "backend")
+
+## Library used
+
+![lib](/docs/lib.png "lib")
 
 ## Images IOS simulator
 
@@ -31,7 +37,7 @@ run command: json-server db.json --delay=1000
 |![10](/docs/android/10.png "10")|![11](/docs/android/11.png "11")|![12](/docs/android/12.png "12")|
 |![13](/docs/android/13.png "13")|![14](/docs/android/14.png "14")|![15](/docs/android/15.png "15")|
 |![16](/docs/android/16.png "16")|![17](/docs/android/17.png "17")|![18](/docs/android/18.png "18")|
-|![19](/docs/android/19.png "19")|||
+|![19](/docs/android/19.png "19")|![Launcher](/docs/android/Launcher.png "Launcher")||
 
 ## Images Android simulator
 
@@ -43,4 +49,4 @@ run command: json-server db.json --delay=1000
 |![10](/docs/android/10.png "10")|![11](/docs/android/11.png "11")|![12](/docs/android/12.png "12")|
 |![13](/docs/android/13.png "13")|![14](/docs/android/14.png "14")|![15](/docs/android/15.png "15")|
 |![16](/docs/android/16.png "16")|![17](/docs/android/17.png "17")|![18](/docs/android/18.png "18")|
-|![19](/docs/android/19.png "19")|||
+|![19](/docs/android/19.png "19")|![Launcher](/docs/android/Launcher.png "Launcher")||

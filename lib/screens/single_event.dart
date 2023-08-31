@@ -116,7 +116,7 @@ class _SingleEventState extends State<SingleEvent> {
 
   Widget buildRoot() {
     Widget buildContent;
-    const styleTextButton = TextStyle(fontFamily: AppStrings.rootFont);
+    const styleTextButton = TextStyle(fontFamily: AppStrings.rootFont, color: AppColors.primaryColor);
     if (_isLoading) {
       buildContent = const LoadingListEvent();
     } else {
@@ -224,12 +224,23 @@ class _SingleEventState extends State<SingleEvent> {
                     padding: const EdgeInsets.all(14),
                     height: double.infinity,
                     alignment: Alignment.bottomCenter,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: <Color>[
+                          Colors.white.withAlpha(0),
+                          Colors.white12,
+                          Colors.white54
+                        ],
+                      ),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
                           onPressed: () => widget.router.goBack(context),
-                          icon: const Icon(CupertinoIcons.chevron_back),
+                          icon: const Icon(CupertinoIcons.chevron_back, color: Colors.black),
                         ),
                         SizedBox(
                           child: ActionWidget(eventId: _event.id!),
