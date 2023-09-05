@@ -97,7 +97,7 @@ class _ListTicketsTabState extends State<ListTicketsTab> {
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(8.0),
                         bottomRight: Radius.circular(8.0)),
-                    child: LoadImage(imageUrl: ticket.image),
+                    child: LoadImage(imageUrl: ticket.getImageUrl()),
                   ),
                 ),
               ),

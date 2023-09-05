@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 
 class Ticket {
@@ -43,6 +44,15 @@ class Ticket {
       'numberOfTicket': numberOfTicket,
       'image': image,
     };
+  }
+
+  String getImageUrl() {
+    if (Platform.isAndroid) {
+      return 'http://10.0.2.2:3000/$image';
+    } else if (Platform.isIOS) {
+      return 'http://localhost:3000/$image';
+    }
+    return '';
   }
 
   String getFormatTime() => formatTime(time);

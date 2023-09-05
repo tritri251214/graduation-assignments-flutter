@@ -132,7 +132,7 @@ class _LatestEventWidgetState extends State<LatestEventWidget> {
                     child: ClipRRect(
                       borderRadius: AppDimensions.imageCardBorderRadius,
                       child: CachedNetworkImage(
-                        imageUrl: latestEvent.image,
+                        imageUrl: latestEvent.getImageUrl(),
                         imageBuilder: (_, imageProvider) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(

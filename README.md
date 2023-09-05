@@ -17,9 +17,9 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Run Backend
 
-cd to root folder
+cd to backend folder: *cd backend*
 
-run command: *json-server db.json --delay=1000*
+run command: *json-server db.json --delay=1000 --static ./public*
 
 ![backend](/docs/backend.png "backend")
 

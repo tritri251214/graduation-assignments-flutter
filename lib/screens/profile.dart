@@ -1,4 +1,6 @@
 // ignore: depend_on_referenced_packages
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
@@ -66,12 +68,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
+                    // const SizedBox(
+                    //   width: 110,
+                    //   height: 110,
+                    //   child: CircleAvatar(
+                    //     backgroundImage: NetworkImage(
+                    //         'https://fastly.picsum.photos/id/660/2508/1672.jpg?hmac=D_MkrRyzUZRYLOGoa4HJ1WJTfnzN0qshbCEPpaCoSuI'),
+                    //   ),
+                    // ),
+                    SizedBox(
                       width: 110,
                       height: 110,
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://fastly.picsum.photos/id/660/2508/1672.jpg?hmac=D_MkrRyzUZRYLOGoa4HJ1WJTfnzN0qshbCEPpaCoSuI'),
+                        backgroundImage: NetworkImage(Platform.isAndroid ? 'http://10.0.2.2:3000/images/50.jpg' : (Platform.isIOS ? 'http://localhost:3000/images/50.jpg' : '')),
                       ),
                     ),
                     const SizedBox(height: 20),

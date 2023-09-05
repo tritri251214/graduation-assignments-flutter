@@ -217,7 +217,7 @@ class _SingleEventState extends State<SingleEvent> {
                   SizedBox(
                     width: double.infinity,
                     height: double.infinity,
-                    child: LoadImage(imageUrl: _event.image, borderRadius: BorderRadius.zero),
+                    child: LoadImage(imageUrl: _event.getImageUrl(), borderRadius: BorderRadius.zero),
                   ),
                   Container(
                     padding: const EdgeInsets.all(14),

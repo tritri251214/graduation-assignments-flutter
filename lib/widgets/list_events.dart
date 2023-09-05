@@ -47,7 +47,7 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
                           height: double.infinity,
                           child: ClipRRect(
                             borderRadius: AppDimensions.imageListBorderRadius,
-                            child: LoadImage(imageUrl: event.image),
+                            child: LoadImage(imageUrl: event.getImageUrl()),
                           ),
                         ),
                         const NewBadgeWidget(),
@@ -55,7 +55,7 @@ class _ListEventsWidgetState extends State<ListEventsWidget> {
                     )
                   : ClipRRect(
                       borderRadius: AppDimensions.imageListBorderRadius,
-                      child: LoadImage(imageUrl: event.image),
+                      child: LoadImage(imageUrl: event.getImageUrl()),
                     ),
             ),
             const SizedBox(width: 10),
