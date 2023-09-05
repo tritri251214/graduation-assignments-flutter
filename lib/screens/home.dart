@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_assignments_flutter/common/strings.dart';
+import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';

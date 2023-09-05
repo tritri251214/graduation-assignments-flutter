@@ -1,11 +1,9 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter/cupertino.dart';
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_assignments_flutter/common/colors.dart';
-import 'package:graduation_assignments_flutter/common/dimensions.dart';
-import 'package:graduation_assignments_flutter/common/storage.dart';
-import 'package:graduation_assignments_flutter/common/strings.dart';
+import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/utils/screen_size.dart';
 import 'package:graduation_assignments_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:graduation_assignments_flutter/widgets/null_text.dart';

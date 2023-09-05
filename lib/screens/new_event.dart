@@ -5,7 +5,6 @@ import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/models/event.dart';
 import 'package:graduation_assignments_flutter/providers/event_provider.dart';
 import 'package:graduation_assignments_flutter/router.dart';
-import 'package:graduation_assignments_flutter/utils/screen_size.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 import 'package:graduation_assignments_flutter/widgets/loading.dart';
 import 'package:provider/provider.dart';
