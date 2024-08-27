@@ -84,7 +84,7 @@
       "location": "Dowan",
       "image": "images/8.jpg",
       "price": 932383782,
-      "favourite": true,
+      "favourite": false,
       "address": "Dowan",
       "timeEnd": "2022-01-21T23:32:56Z"
     },
@@ -540,37 +540,26 @@
       "timeEnd": "2022-01-21T23:32:56Z"
     },
     {
-      "id": 50,
-      "name": "Karleen",
-      "time": "2023-01-29T06:47:05Z",
-      "location": "Mundybash",
-      "image": "images/50.jpg",
-      "price": 337686126,
-      "favourite": true,
-      "address": "Mundybash",
-      "timeEnd": "2022-01-21T23:32:56Z"
-    },
-    {
       "id": 51,
       "name": "a1",
       "time": "2023-08-29T21:49:00.000",
       "location": "a1",
       "image": "images/51.jpg",
       "price": 1,
-      "favourite": false,
+      "favourite": true,
       "address": "a1",
       "timeEnd": "2023-08-29T21:49:00.000"
     },
     {
       "id": 52,
-      "name": "a2",
-      "time": "2023-08-29T21:52:00.000",
-      "location": "a2",
-      "image": "images/52.jpg",
-      "price": 0,
+      "name": "a3",
+      "time": "2023-09-06T16:13:00.000",
+      "location": "xczxczx",
+      "image": "/xczczxczx",
+      "price": 200,
       "favourite": true,
-      "address": "a2",
-      "timeEnd": "2023-08-29T21:52:00.000"
+      "address": "sdadasd",
+      "timeEnd": "2023-09-06T16:13:00.000"
     }
   ],
   "tickets": [
