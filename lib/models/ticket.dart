@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:graduation_assignments_flutter/common/common.dart';
 import 'package:graduation_assignments_flutter/utils/utils.dart';
 
 class Ticket {
@@ -47,12 +48,17 @@ class Ticket {
   }
 
   String getImageUrl() {
-    if (Platform.isAndroid) {
-      return 'http://10.0.2.2:3000/$image';
-    } else if (Platform.isIOS) {
-      return 'http://localhost:3000/$image';
+    String imageUrl = '';
+    try {
+      if (Platform.isAndroid) {
+        imageUrl = '${AppStrings.androidAPIBase}:${AppStrings.apiPort}/$image';
+      } else if (Platform.isIOS) {
+        imageUrl = '${AppStrings.iosAPIBase}:${AppStrings.apiPort}/$image';
+      }
+    } catch (e) {
+      imageUrl = '${AppStrings.iosAPIBase}:${AppStrings.apiPort}/$image';
     }
-    return '';
+    return imageUrl;
   }
 
   String getFormatTime() => formatTime(time);

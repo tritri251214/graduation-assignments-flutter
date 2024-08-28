@@ -80,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: 110,
                       height: 110,
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(Platform.isAndroid ? 'http://10.0.2.2:3000/images/50.jpg' : (Platform.isIOS ? 'http://localhost:3000/images/50.jpg' : '')),
+                        backgroundImage: NetworkImage(Platform.isAndroid ? '${AppStrings.androidAPIBase}:${AppStrings.apiPort}/50.jpg' : (Platform.isIOS ? '${AppStrings.iosAPIBase}:${AppStrings.apiPort}/50.jpg' : '${AppStrings.iosAPIBase}:${AppStrings.apiPort}/50.jpg')),
                       ),
                     ),
                     const SizedBox(height: 20),

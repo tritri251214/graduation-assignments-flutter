@@ -4,7 +4,7 @@
   "description": "Use Json server to run",
   "main": "index.js",
   "scripts": {
-    "start": "json-server db.json --delay=1000 --static ./public",
+    "start": "json-server db.json --host=192.168.195.25 --delay=1000 --port=3000 --static ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

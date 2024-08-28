@@ -513,7 +513,7 @@
       "location": "Boden",
       "image": "images/47.jpg",
       "price": 115176219,
-      "favourite": true,
+      "favourite": false,
       "address": "",
       "timeEnd": "2022-01-21T23:32:56Z"
     },
@@ -522,9 +522,9 @@
       "name": "Lindsey",
       "time": "2024-02-09T00:27:02Z",
       "location": "Sheki",
-      "price": 643288176,
       "image": "images/48.jpg",
-      "favourite": false,
+      "price": 643288176,
+      "favourite": true,
       "address": "Sheki",
       "timeEnd": "2022-01-21T23:32:56Z"
     },
@@ -533,9 +533,9 @@
       "name": "Trude",
       "time": "2023-11-26T21:16:15Z",
       "location": "Chengmagang",
-      "price": 139387469,
       "image": "images/49.jpg",
-      "favourite": false,
+      "price": 139387469,
+      "favourite": true,
       "address": "Chengmagang",
       "timeEnd": "2022-01-21T23:32:56Z"
     },

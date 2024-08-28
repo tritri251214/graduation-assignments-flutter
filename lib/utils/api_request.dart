@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as Http;
+import 'package:http/http.dart' as http;
+import 'package:graduation_assignments_flutter/common/common.dart';
 
 enum HttpMethod { get, post, patch, put, delete }
 
@@ -10,13 +11,17 @@ Future<dynamic> request(
   String path, {
   Object data = const {},
 }) async {
-  late Http.Response response;
+  late http.Response response;
 
   Uri uri = Uri();
-  if (Platform.isAndroid) {
-    uri = Uri.parse('http://10.0.2.2:3000/$path');
-  } else if (Platform.isIOS) {
-    uri = Uri.parse('http://localhost:3000/$path');
+  try {
+    if (Platform.isAndroid) {
+      uri = Uri.parse('${AppStrings.androidAPIBase}:${AppStrings.apiPort}/$path');
+    } else if (Platform.isIOS) {
+      uri = Uri.parse('${AppStrings.iosAPIBase}:${AppStrings.apiPort}/$path');
+    }
+  } catch(e) {
+    uri = Uri.parse('${AppStrings.iosAPIBase}:${AppStrings.apiPort}/$path');
   }
 
   Map<String, String> headers = {
@@ -26,24 +31,24 @@ Future<dynamic> request(
 
   switch (method) {
     case HttpMethod.get:
-      response = await Http.get(uri, headers: headers);
+      response = await http.get(uri, headers: headers);
       break;
     case HttpMethod.post:
-      response = await Http.post(
+      response = await http.post(
         uri,
         headers: headers,
         body: json.encode(data),
       );
       break;
     case HttpMethod.patch:
-      response = await Http.patch(
+      response = await http.patch(
         uri,
         headers: headers,
         body: json.encode(data),
       );
       break;
     case HttpMethod.put:
-      response = await Http.put(
+      response = await http.put(
         uri,
         headers: headers,
         body: json.encode(data),
@@ -51,7 +56,7 @@ Future<dynamic> request(
       break;
     case HttpMethod.delete:
       response =
-          await Http.delete(uri, headers: headers, body: json.encode(data));
+          await http.delete(uri, headers: headers, body: json.encode(data));
       break;
     default:
       throw ArgumentError.value(method);
