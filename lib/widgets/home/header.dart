@@ -17,7 +17,7 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
-  Placemark _location = Placemark();
+  Placemark _location = const Placemark();
 
   @override
   void initState() {

@@ -226,10 +226,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onPressed: _onLogout,
                         style: ButtonStyle(
                           shape:
-                              MaterialStatePropertyAll(RoundedRectangleBorder(
+                              WidgetStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: AppDimensions.borderButtonRadius,
                           )),
-                          textStyle: const MaterialStatePropertyAll(
+                          textStyle: const WidgetStatePropertyAll(
                             TextStyle(
                                 fontFamily: AppStrings.rootFont,
                                 color: AppColors.placeholderText,

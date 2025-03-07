@@ -146,9 +146,9 @@ class _SingleEventState extends State<SingleEvent> {
                   TextButton(
                     onPressed: _onPressItem,
                     style: ButtonStyle(
-                      padding: const MaterialStatePropertyAll(
+                      padding: const WidgetStatePropertyAll(
                           EdgeInsets.only(left: 0)),
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                         borderRadius: AppDimensions.borderButtonRadius,
                       )),
                     ),
@@ -179,9 +179,9 @@ class _SingleEventState extends State<SingleEvent> {
                   TextButton(
                     onPressed: _onPressItem,
                     style: ButtonStyle(
-                      padding: const MaterialStatePropertyAll(
+                      padding: const WidgetStatePropertyAll(
                           EdgeInsets.only(left: 0)),
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                         borderRadius: AppDimensions.borderButtonRadius,
                       )),
                     ),
@@ -288,8 +288,8 @@ class _SingleEventState extends State<SingleEvent> {
                   onPressed: _onPressedDeleteEvent,
                   style: ButtonStyle(
                     backgroundColor:
-                        const MaterialStatePropertyAll(AppColors.dangerColor),
-                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        const WidgetStatePropertyAll(AppColors.dangerColor),
+                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: AppDimensions.borderButtonRadius,
                     )),
                   ),

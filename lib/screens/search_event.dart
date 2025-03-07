@@ -137,7 +137,7 @@ class _SearchEventScreenState extends State<SearchEventsScreen> {
                       TextButton(
                         onPressed: _onPressedSorter,
                         style: const ButtonStyle(
-                          padding: MaterialStatePropertyAll(EdgeInsets.all(0)),
+                          padding: WidgetStatePropertyAll(EdgeInsets.all(0)),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

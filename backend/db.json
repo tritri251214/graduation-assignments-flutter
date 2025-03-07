@@ -106,7 +106,7 @@
       "location": "‘Awaj",
       "image": "images/10.jpg",
       "price": 217952871,
-      "favourite": true,
+      "favourite": false,
       "address": "",
       "timeEnd": "2022-01-21T23:32:56Z"
     },
@@ -117,7 +117,7 @@
       "location": "Grygov",
       "image": "images/11.jpg",
       "price": 918146938,
-      "favourite": true,
+      "favourite": false,
       "address": "Grygov",
       "timeEnd": "2022-01-21T23:32:56Z"
     },
@@ -540,26 +540,26 @@
       "timeEnd": "2022-01-21T23:32:56Z"
     },
     {
-      "id": 51,
-      "name": "a1",
-      "time": "2023-08-29T21:49:00.000",
-      "location": "a1",
-      "image": "images/51.jpg",
-      "price": 1,
-      "favourite": true,
-      "address": "a1",
-      "timeEnd": "2023-08-29T21:49:00.000"
-    },
-    {
       "id": 52,
       "name": "a3",
       "time": "2023-09-06T16:13:00.000",
       "location": "xczxczx",
       "image": "/xczczxczx",
       "price": 200,
-      "favourite": true,
+      "favourite": false,
       "address": "sdadasd",
       "timeEnd": "2023-09-06T16:13:00.000"
+    },
+    {
+      "id": 54,
+      "name": "từ ít ty f",
+      "time": "2025-03-06T16:10:00.000",
+      "location": "fhcbvb",
+      "image": "rytttt",
+      "price": 4550,
+      "favourite": false,
+      "address": "fhfgfj và d à hh",
+      "timeEnd": "2025-03-06T14:31:00.000"
     }
   ],
   "tickets": [

@@ -81,10 +81,7 @@ class _ComponentState extends State<BottomNavigationBarWidget> {
       case Menu.profile:
         selectedMenu = 4;
         break;
-      default:
-        selectedMenu = 0;
-        break;
-    }
+      }
     return BottomNavigationBar(
       backgroundColor: AppColors.backgroundCard,
       elevation: 0,

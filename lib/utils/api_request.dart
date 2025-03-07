@@ -16,11 +16,12 @@ Future<dynamic> request(
   Uri uri = Uri();
   try {
     if (Platform.isAndroid) {
-      uri = Uri.parse('${AppStrings.androidAPIBase}:${AppStrings.apiPort}/$path');
+      uri =
+          Uri.parse('${AppStrings.androidAPIBase}:${AppStrings.apiPort}/$path');
     } else if (Platform.isIOS) {
       uri = Uri.parse('${AppStrings.iosAPIBase}:${AppStrings.apiPort}/$path');
     }
-  } catch(e) {
+  } catch (e) {
     uri = Uri.parse('${AppStrings.iosAPIBase}:${AppStrings.apiPort}/$path');
   }
 
@@ -58,9 +59,7 @@ Future<dynamic> request(
       response =
           await http.delete(uri, headers: headers, body: json.encode(data));
       break;
-    default:
-      throw ArgumentError.value(method);
-  }
+    }
 
   switch (response.statusCode) {
     case 200:

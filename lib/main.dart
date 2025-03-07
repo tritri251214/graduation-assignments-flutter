@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         filledButtonTheme: const FilledButtonThemeData(
           style: ButtonStyle(
-              backgroundColor:
-                  MaterialStatePropertyAll(AppColors.primaryColor)),
+            backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor)
+          ),
         ),
       ),
       initialRoute: HomeScreen.routeName,

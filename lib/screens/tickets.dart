@@ -100,28 +100,23 @@ class _TicketScreenState extends State<TicketScreen>
                 fontSize: 24,
                 color: AppColors.white)),
         centerTitle: false,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: Container(
-            alignment: Alignment.topLeft,
-            padding: const EdgeInsets.only(bottom: 10),
-            child: TabBar(
-              controller: _tabController,
-              isScrollable: true,
-              indicatorColor: AppColors.white,
-              labelColor: AppColors.white,
-              unselectedLabelColor: AppColors.backgroundCard,
-              dividerColor: Colors.transparent,
-              tabs: const [
-                Tab(
-                  child: Text('Upcomming', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
-                ),
-                Tab(
-                  child: Text('Past tickets', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
-                ),
-              ],
+        bottom: TabBar(
+          tabAlignment: TabAlignment.start,
+          controller: _tabController,
+          padding: const EdgeInsets.only(bottom: 10),
+          isScrollable: true,
+          indicatorColor: AppColors.white,
+          labelColor: AppColors.white,
+          unselectedLabelColor: AppColors.backgroundCard,
+          dividerColor: Colors.transparent,
+          tabs: const [
+            Tab(
+              child: Text('Upcomming', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
             ),
-          ),
+            Tab(
+              child: Text('Past tickets', style: TextStyle(fontFamily: AppStrings.rootFont, fontSize: 16)),
+            ),
+          ],
         ),
       ),
       body: TabBarView(

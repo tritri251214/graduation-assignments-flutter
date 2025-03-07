@@ -167,8 +167,7 @@ class _NewEventState extends State<NewEvent> {
             _selectedTimeEnd.minute);
         _event.timeEnd = eventTimeEnd.toIso8601String();
         break;
-      default:
-    }
+      }
   }
 
   Future<void> _onSubmit() async {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_assignments_flutter/common/common.dart';
 
 class ImagePlaceholder extends StatelessWidget {
-  const ImagePlaceholder({Key? key}) : super(key: key);
+  const ImagePlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ImagePlaceholder extends StatelessWidget {
 }
 
 class ListItemPlaceholder extends StatelessWidget {
-  const ListItemPlaceholder({Key? key}) : super(key: key);
+  const ListItemPlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {
